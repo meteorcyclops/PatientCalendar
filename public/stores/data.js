@@ -2,17 +2,50 @@ import {observable, action} from 'mobx'
 import mobx from 'mobx' 
 import _ from 'lodash' 
 
+import { makeEventList } from './dealDate'
+
 class DataStore {
-    @observable data = []
+    @observable reservationData = []
+    @observable reservationEvents = []
+    @observable getReservationsReady = true
+
+    @observable userType = 'doctor' // patient
+    
 
     @action
-    load = ()=> {
-        this.loaddata()
-    }
-    
-    loaddata = ()=>{
-    }
+    getReservations = (queryItem)=> {
+        this.getReservationsReady = false
+        fetch( 
+            'http://localhost:8000/service',
+            {
+                method: 'POST',
+                headers: new Headers({ 
+                    'Content-Type': 'application/json' 
+                }),
+                body: JSON.stringify(
+                    Object.assign(
+                        {
+                            "api": "topListReservation"
+                        }, 
+                        queryItem
+                    )
+                )
+            }
+        )
+        .then( d => d.json() )
+        .then( (backdata)=>{
+            if (!backdata.status){
+                alert( backdata.err )
+            }else {
+                const data = backdata.data
 
+                this.reservationData = data
+                this.reservationEvents = makeEventList(data)
+            }
+            this.getReservationsReady = true
+        } )
+
+    }
 }
 
 const dataStore = new DataStore

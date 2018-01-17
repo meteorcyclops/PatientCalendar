@@ -1,0 +1,15 @@
+.rbc-calendar{
+    position: relative;
+    font-family: monospace;
+    border-radius: 5px; 
+    overflow: hidden;
+    border: 1px solid black;
+    padding:40px 0px;
+}
+.rbc-month-view{
+    background: #fefefeb3;
+    border-radius: 10px;
+}
+.rbc-today {
+    background-color: #ffffff;
+}

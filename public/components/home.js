@@ -6,8 +6,12 @@ import moment  from 'moment'
 
 import CalendarTitle from './CalendarTitle' 
 import CalendarHome  from './CalendarHome'
+import EventsOverview from './EventsOverview'
 
 import dataStore from '../stores/data'
+import eventTypeList from '../stores/eventTypeList'
+
+import 'syscc-icons/src/syscc-fonts.css'
 
 class Home extends React.Component {
     constructor(props) {
@@ -33,7 +37,10 @@ class Home extends React.Component {
 
     render() {
 
-        const calendarEvents = toJS(dataStore.reservationEvents)
+        const calendarEvents  = toJS(dataStore.reservationEvents)
+        const calendarCounter = toJS(dataStore.reservationCounter)
+
+        console.log(calendarCounter)
 
         return (
             <div className = 'home'>
@@ -42,7 +49,10 @@ class Home extends React.Component {
                     <CalendarTitle />
                 </div>
                 <div className='homeActionPlane'>
-                    actionPaln
+                    <EventsOverview 
+                        dataTypeList = {eventTypeList}
+                        conterObject = {calendarCounter}
+                    />
                 </div>
                 <div className = 'calendarContainer'>
                     <CalendarHome 

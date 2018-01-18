@@ -18,6 +18,7 @@
     "react-big-calendar": "^0.17.0",
     "react-dom": "^16.2.0",
     "styled-components": "^2.4.0",
+    "syscc-icons": "^1.4.4",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

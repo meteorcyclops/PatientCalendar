@@ -20,8 +20,8 @@ class CalendarHome extends React.Component {
         moment.locale('zh-tw')
         BigCalendar.setLocalizer( BigCalendar.momentLocalizer(moment) )
         this.components = {
-            // event?: ReactClass<any>,
-            // eventWrapper?: ReactClass<any>,
+            event: Event,
+            eventWrapper: EventWrapper,
             // dayWrapper?: ReactClass<any>,
             // dateCellWrapper?: ReactClass<any>,
             toolbar: TitleToolBar,
@@ -44,6 +44,9 @@ class CalendarHome extends React.Component {
             //     event?: ReactClass<any>
             // }
         }
+        this.messages = {
+            showMore: this.showMoreRender
+        }
     }
 
     componentWillMount(){
@@ -55,7 +58,7 @@ class CalendarHome extends React.Component {
     // }
 
     onSelectEvent(e){
-        console.log('onSelectEvent', e)
+        // console.log('onSelectEvent', e)
     }
 
     // eventPropGetter( event, start, end, isSelected){
@@ -80,7 +83,17 @@ class CalendarHome extends React.Component {
                 // eventPropGetter = {this.eventPropGetter.bind(this)}
                 toolbar = {true}
                 components = {this.components}
+                messages = {this.messages}
             />
+        )
+    }
+
+    showMoreRender(props){
+        console.log(props)
+        return(
+            <div>
+                
+            </div>
         )
     }
 }
@@ -94,6 +107,24 @@ CalendarHome.defaultProps={
             end: moment().add(1, 'hours')
         },
     ]
+}
+
+const EventWrapper = (props)=>{
+    console.log(props)
+    return(
+        <div>
+            
+        </div>
+    )
+}
+
+const Event = (props)=>{
+    console.log(props)
+    return(
+        <div>
+            
+        </div>
+    )
 }
 
 export default CalendarHome

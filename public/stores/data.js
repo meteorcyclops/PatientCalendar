@@ -7,6 +7,7 @@ import { makeEventList } from './dealDate'
 class DataStore {
     @observable reservationData = []
     @observable reservationEvents = []
+    @observable reservationCounter = false
     @observable getReservationsReady = true
 
     @observable userType = 'doctor' // patient
@@ -40,7 +41,11 @@ class DataStore {
                 const data = backdata.data
 
                 this.reservationData = data
-                this.reservationEvents = makeEventList(data)
+                
+                const pocessingData = makeEventList(data)
+                this.reservationEvents  = pocessingData.data
+                this.reservationCounter = pocessingData.counter
+
             }
             this.getReservationsReady = true
         } )

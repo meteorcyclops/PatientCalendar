@@ -4,6 +4,15 @@ import moment from 'moment'
 import dataStore from './data'
 
 const makeEventList = (dataList) =>{
+
+    const conterObj = {
+        opd: 0,
+        inp: 0,
+        health: 0,
+        opr: 0,
+        check: 0
+    }
+
     const eventList = _.map( dataList, (eachData, key)=>{
         let event = {
             title: '',
@@ -18,16 +27,34 @@ const makeEventList = (dataList) =>{
         event.end   = eventTime.add(30, 'minutes').toDate()
 
         if ( eachData.title == '預約門診' ){
+     
+            conterObj.opd += 1
+     
         } else if (eachData.title == '預約健檢'){
+     
+            conterObj.health += 1
+     
         } else if (eachData.title == '預約住院'){
+     
+            conterObj.inp += 1
+     
         } else if (eachData.title == '預約手術'){
+        
+            conterObj.opr += 1
+        
         } else if (eachData.title == '預約排檢' || eachData.title == '預約排檢(內視鏡)'){
+        
+            conterObj.check += 1
+        
         }
 
         return event
     } )
 
-    return eventList
+    return {
+        counter: conterObj,
+        data: eventList
+    }
 }
 
 

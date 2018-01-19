@@ -3,13 +3,21 @@
     font-family: monospace;
     border-radius: 5px; 
     overflow: hidden;
-    border: 1px solid black;
-    padding:40px 0px;
+    // border: 1px solid black;
+    padding:40px 0px 40px 0px;
 }
 .rbc-month-view{
     background: #fefefeb3;
     border-radius: 10px;
+    z-index: 1;
 }
+
+.rbc-time-view{
+    background: #fefefeb3;
+    border-radius: 10px;
+    z-index: 1;
+}
+
 .rbc-today {
     background-color: #fcf4ca;
 }
@@ -17,7 +25,28 @@
     padding: 2px 2px;
     text-align: center;
     font-size: 12px;
+    background: none;
+    border: none!important;
 }
+.rbc-event-label{
+    display: none;
+}
+
+.rbc-event.rbc-selected {
+    background: none;
+}
+
 .rbc-show-more{
     color: rgba(22, 36, 99, 0.71);
+    background: none;
 }
+
+#calenderTitle{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+// .eachSlotDay{
+//     min-height: 100px;
+// }
+.rbc-time-slot { min-height: 60px; }

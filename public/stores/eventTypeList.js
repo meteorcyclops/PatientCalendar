@@ -7,7 +7,7 @@ const eventTypeList = [
     {
         title: '預約住院',
         value: 'inp',
-        color: 'rgb(0, 179, 172)'
+        color: 'rgb(0, 172, 165)'
     },
     {
         title: '預約手術',
@@ -17,7 +17,7 @@ const eventTypeList = [
     {
         title: '預約排檢',
         value: 'check',
-        color: 'rgb(255, 19, 228)'
+        color: 'rgb(255, 54, 232)'
     },
     // {
     //     title: '預約排檢(內視鏡)',

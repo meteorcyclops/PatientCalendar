@@ -49,10 +49,14 @@ class Home extends React.Component {
                     <CalendarTitle />
                 </div>
                 <div className='homeActionPlane'>
-                    <EventsOverview 
-                        dataTypeList = {eventTypeList}
-                        conterObject = {calendarCounter}
-                    />
+                    {
+                        calendarCounter?
+                        <EventsOverview 
+                            dataTypeList = {eventTypeList}
+                            conterObject = {calendarCounter}
+                        />
+                        :null
+                    }
                 </div>
                 <div className = 'calendarContainer'>
                     <CalendarHome 

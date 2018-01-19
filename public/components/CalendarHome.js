@@ -8,6 +8,8 @@ import '../css/global.css'
 import '../css/calendarBody.scss'
 
 import TitleToolBar from './TitleToolBar'
+import EventWrapperMonth from './elements/EventWrapperMonth'
+import EventWrapperDay from './elements/EventWrapperDay'
 
 import dataStore from '../stores/data'
 
@@ -20,9 +22,9 @@ class CalendarHome extends React.Component {
         moment.locale('zh-tw')
         BigCalendar.setLocalizer( BigCalendar.momentLocalizer(moment) )
         this.components = {
-            event: Event,
-            eventWrapper: EventWrapper,
-            // dayWrapper?: ReactClass<any>,
+            // event: Event,
+            // eventWrapper: EventWrapper,
+            // dayWrapper: EventWrapperDay,
             // dateCellWrapper?: ReactClass<any>,
             toolbar: TitleToolBar,
             // agenda?: {
@@ -30,19 +32,19 @@ class CalendarHome extends React.Component {
             //   time?: ReactClass<any>,
             //   event?: ReactClass<any>
             // },
-            // day?: {
-            //   header?: ReactClass<any>,
-            //   event?: ReactClass<any>
-            // },
+            day: {
+            //   header: EventWrapperDay,
+              event: EventWrapperDay
+            },
             // week?: {
             //   header?: ReactClass<any>,
             //   event?: ReactClass<any>
             // },
-            // month?: {
-            //     header?: ReactClass<any>,
-            //     dateHeader?: ReactClass<any>,
-            //     event?: ReactClass<any>
-            // }
+            month: {
+                // header?: ReactClass<any>,
+                // dateHeader?: ReactClass<any>,
+                event: EventWrapperMonth
+            }
         }
         this.messages = {
             showMore: this.showMoreRender
@@ -55,6 +57,11 @@ class CalendarHome extends React.Component {
     
     // onSelectSlot(e){
     //     console.log('onSelectSlot', e)
+    // }
+
+    // slotPropGetter(e){
+    //     console.log('slotPropGetter', e)
+    //     return { className: 'eachSlotDay'}
     // }
 
     onSelectEvent(e){
@@ -81,18 +88,26 @@ class CalendarHome extends React.Component {
                 // onSelectSlot = {this.onSelectSlot.bind(this)}
                 onSelectEvent = {this.onSelectEvent.bind(this)}
                 // eventPropGetter = {this.eventPropGetter.bind(this)}
+                // slotPropGetter = {this.slotPropGetter.bind(this)}
                 toolbar = {true}
                 components = {this.components}
                 messages = {this.messages}
+                timeslots={4}
+                step = {15}
             />
         )
     }
 
     showMoreRender(props){
-        console.log(props)
+        // console.log(props)
         return(
-            <div>
-                
+            <div 
+                style={{
+                    display: 'flex', 
+                    justifyContent: 'center',
+                    
+                }}>
+                +{props}
             </div>
         )
     }
@@ -109,22 +124,13 @@ CalendarHome.defaultProps={
     ]
 }
 
-const EventWrapper = (props)=>{
-    console.log(props)
-    return(
-        <div>
+// const Event = (props)=>{
+//     console.log(props)
+//     return(
+//         <div>
             
-        </div>
-    )
-}
-
-const Event = (props)=>{
-    console.log(props)
-    return(
-        <div>
-            
-        </div>
-    )
-}
+//         </div>
+//     )
+// }
 
 export default CalendarHome

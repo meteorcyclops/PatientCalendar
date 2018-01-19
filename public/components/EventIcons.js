@@ -54,7 +54,7 @@ const EventIcons = (props)=> {
     
     } else if (iconType == '預約手術'){
 
-        classN = "emr-health-care_note"
+        classN = "emr-health-care_note emr-surg"
 
     } else if (iconType == '預約排檢' || iconType == '預約排檢(內視鏡)'){
         
@@ -65,8 +65,7 @@ const EventIcons = (props)=> {
         <i 
             style={{ 
                 color: props.color, 
-                height: props.size,  
-                width : props.size,  
+                fontSize: props.size
             }} 
             className={classN} 
         />

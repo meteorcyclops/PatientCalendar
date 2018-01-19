@@ -30,16 +30,20 @@ class TitleToolBar extends React.Component {
     }
 
     render() {
+        // console.log(this.props)
         const date = moment( this.props.date )
         const label = date.format( 'YYYY MMMM' )
-        const view = this.props.view
+
+        const view = this.props.view  // 現在的模式
 
         const viewNames = this.props.views
 
-        const WalkDiv   = this.styles.walkDiv
-        const WalkDivGroup   = this.styles.walkDivGroup
-
         const TitleBody = this.styles.titleBody
+        const TitleDiv = this.styles.titleDiv
+        const WalkDiv   = this.styles.walkDiv
+        const WalkDivGroup = this.styles.walkDivGroup
+        const ViewDivGroup = this.styles.viewDivGroup
+        const ViewDivStamp = this.styles.viewDivStamp
 
         return (
             <TitleBody>
@@ -54,17 +58,30 @@ class TitleToolBar extends React.Component {
                         <FontAwesomeIcon icon={ faAngleRight }/>
                     </WalkDiv>
                 </WalkDivGroup>
-                <div>
-                    {label}
-                </div>
+                <TitleDiv> {label} </TitleDiv>
+                <ViewDivGroup>
+                    <ViewDivStamp 
+                        style={{color: view=='month'?'#4079ff':null}}
+                        onClick={this.view.bind(null, 'month')}
+                    >
+                        M
+                    </ViewDivStamp>
+                    <ViewDivStamp
+                        style={{color: view=='week'?'#4079ff':null}}
+                        onClick={this.view.bind(null, 'week')}
+                    >
+                        W
+                    </ViewDivStamp>
+                    <ViewDivStamp
+                        style={{color: view=='day'?'#4079ff':null}}
+                        onClick={this.view.bind(null, 'day')}
+                    >
+                        D
+                    </ViewDivStamp>
+                </ViewDivGroup>
             </TitleBody>
         )
     }
-    // <WalkDiv
-    //     key={name}
-    //     onClick={this.view.bind(null, name)}
-    // >
-    // </WalkDiv>
 
     styles = {
         titleBody:styled.div`
@@ -94,7 +111,27 @@ class TitleToolBar extends React.Component {
             &:active {
                 background: #3174ad;
             }
-        `
+        `,
+        titleDiv:styled.div`
+            color: white;
+            font-size: 20px;
+            font-weight: bold
+        `,
+        viewDivGroup:styled.div`
+            position: absolute;
+            right: 0px; top: 0px;
+            display: flex; flex-direction: row;
+            align-items: center;
+            margin-right:10px;
+            font-size: 20px;
+            font-family: monospace;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.6)
+        `,
+        viewDivStamp:styled.div`
+            padding: 2px 6px
+        `,
+
     }
 }
 

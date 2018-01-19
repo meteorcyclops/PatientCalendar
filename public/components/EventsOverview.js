@@ -23,9 +23,15 @@ class EventsOverview extends React.Component {
         _.forEach( dataTypeList, (eachData, key)=>{
             if (conterObject.hasOwnProperty(eachData.value) ) {
                 const comp = (
-                    <span className = 'events_overview_stamp'  >
-                        <EventIcons iconType={eachData.title} color={eachData.color} />
-                        <span> {conterObject[eachData.value]} </span>
+                    <span className = 'events_overview_stamp' key={'overview' + eachData.value} >
+                        <EventIcons 
+                            iconType={eachData.title} 
+                            color={eachData.color} 
+                            size="18px" 
+                        />
+                        <span style={{marginLeft:'4px', fontSize:'#343331'}}> 
+                            {conterObject[eachData.value]} 
+                        </span> 
                     </span>
                 )
                 consentArray.push(comp)
@@ -42,12 +48,10 @@ class EventsOverview extends React.Component {
 
         const constent = this.makeConstent(dataTypeList, conterObject)
 
-        console.log(constent)
-
         return (
-            <div className='events_overview'>
+            <span className='events_overview'>
                 {constent}
-            </div>
+            </span>
         )
     }
 }

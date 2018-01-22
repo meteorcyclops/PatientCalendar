@@ -88,6 +88,10 @@ class CalendarHome extends React.Component {
     }
 
     componentDidMount(){
+        let allA = document.querySelectorAll('a')
+        _.forEach(allA, (div)=>{
+            div.onClick = ()=>{}
+        })
     }
     
     render() {

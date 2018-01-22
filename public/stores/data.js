@@ -1,6 +1,7 @@
 import {observable, action} from 'mobx' 
 import mobx from 'mobx' 
 import _ from 'lodash' 
+import moment from 'moment'
 
 import { makeEventList } from './dealDate'
 
@@ -12,7 +13,14 @@ class DataStore {
 
     @observable userType = 'doctor' // patient
     
+    @observable nowDate = moment().toDate()
 
+    navagatorFun = null
+
+    @action
+    setObs( key, value ){
+        this[key] = value
+    }
     @action
     getReservations = (queryItem)=> {
         this.getReservationsReady = false

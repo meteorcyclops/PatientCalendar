@@ -8,6 +8,8 @@ import { faAngleRight, faAngleLeft } from '@fortawesome/fontawesome-free-solid'
 import { faCalendarCheck } from '@fortawesome/fontawesome-free-regular' 
 import { navigate } from 'react-big-calendar/lib/utils/constants'
 
+import dataStore from '../stores/data'
+
 class TitleToolBar extends React.Component {
     constructor(props) {
         super(props)
@@ -15,6 +17,7 @@ class TitleToolBar extends React.Component {
             
         }
         this.handleClick = this.handleClick.bind(this)
+        dataStore.navagatorFun = this.view.bind(null, 'day')
     }
 
     handleClick() {

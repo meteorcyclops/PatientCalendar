@@ -1,3 +1,5 @@
+$fontColor: rgb(25, 40, 49);
+
 .rbc-calendar{
     position: relative;
     font-family: monospace;
@@ -19,8 +21,24 @@
 }
 
 .rbc-today {
-    background-color: #fcf4ca;
+    border: 2px solid #7ab4d8!important;
 }
+.rbc-current>div>div{
+    position: absolute;
+    width: 25px;
+    height: 4px;
+    background: #7ad8a3;
+    top: 9px;
+}
+
+.rbc-header{
+    color:$fontColor;
+}
+
+.rbc-date-cell{
+    color:$fontColor;
+}
+
 .rbc-event{
     padding: 2px 2px;
     text-align: center;
@@ -28,6 +46,7 @@
     background: none;
     border: none!important;
 }
+
 .rbc-event-label{
     display: none;
 }
@@ -50,3 +69,17 @@
 //     min-height: 100px;
 // }
 .rbc-time-slot { min-height: 60px; }
+
+// disable all day
+.rbc-time-view .rbc-row:nth-child(2) {
+    display: none;
+}
+
+.rbc-time-view .rbc-row div:nth-child(1) {
+    display: none;
+}
+//
+
+a {
+    pointer-events: none
+}

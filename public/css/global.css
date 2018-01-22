@@ -18,7 +18,8 @@ html, body, #app, .home{
     display: flex;
     flex-direction: column;
     align-content: stretch;
-    background: repeating-linear-gradient( 10deg, rgba(125, 185, 222, 0.75), rgba(125, 185, 222, 0.75) 125px, rgb(125, 185, 222) 125px, rgb(125, 185, 222) 250px );
+    background: rgb(125, 185, 222) 125px;
+    /* repeating-linear-gradient( 10deg, rgba(125, 185, 222, 0.75), rgba(125, 185, 222, 0.75) 125px, rgb(125, 185, 222) 125px, rgb(125, 185, 222) 250px ); */
 }
 
 .homeTitle {

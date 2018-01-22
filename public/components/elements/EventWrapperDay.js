@@ -6,8 +6,6 @@ import eventTypeList from '../../stores/eventTypeList'
 
 const EventWrapperMonth = (props)=>{
     
-    console.log(props)
-
     const type = props.event.type
     const thisType = eventTypeList.filter((x)=>(x.value == type)) 
     const GBcolor = thisType.length>0?thisType[0].color: 'white'
@@ -37,7 +35,7 @@ const EventWrapperMonth = (props)=>{
         background: ${GBcolor};
     `
 
-    const startStr = moment( props.event.start ).format('HH:mm')
+    const startStr = moment( props.event.start ).format('HH:DD')
 
     return(
         <EventDivStyle>

@@ -24,8 +24,8 @@ class CalendarHome extends React.Component {
         this.components = {
             // event: Event,
             // eventWrapper: EventWrapper,
-            // dayWrapper: EventWrapperDay,
-            // dateCellWrapper?: ReactClass<any>,
+            // dayWrapper: DateCellWrapper,
+            // dateCellWrapper: DateCellWrapper,
             toolbar: TitleToolBar,
             // agenda?: {
             //   date?: ReactClass<any>,
@@ -42,7 +42,7 @@ class CalendarHome extends React.Component {
             // },
             month: {
                 // header?: ReactClass<any>,
-                // dateHeader?: ReactClass<any>,
+                dateHeader: DateCellWrapper,
                 event: EventWrapperMonth
             }
         }
@@ -55,17 +55,25 @@ class CalendarHome extends React.Component {
     }
 
     
-    // onSelectSlot(e){
-    //     console.log('onSelectSlot', e)
-    // }
-
+    onSelectSlot(e){
+        if (e.slots.length>0){
+            const pickDay = e.slots[0]
+            dataStore.setObs( 'nowDate', pickDay )
+            dataStore.navagatorFun('day')
+        }
+        console.log('onSelectSlot', e)
+    }
+    onSelecting(e){
+        console.log('onSelecting', e)
+    }
     // slotPropGetter(e){
     //     console.log('slotPropGetter', e)
     //     return { className: 'eachSlotDay'}
     // }
 
     onSelectEvent(e){
-        // console.log('onSelectEvent', e)
+        console.log('onSelectEvent', e)
+        dataStore.setObs( 'nowDate', e.start )
     }
 
     // eventPropGetter( event, start, end, isSelected){
@@ -75,17 +83,24 @@ class CalendarHome extends React.Component {
     //     }
     // }
 
+    onNavigate(e){
+        console.log(e)
+    }
+
     componentDidMount(){
     }
     
     render() {
         const events = this.props.events
+        const date = this.props.date
+
         return (
             <BigCalendar
                 events={events}
-                defaultDate={moment().toDate()}
+                date={date}
                 selectable={true}
-                // onSelectSlot = {this.onSelectSlot.bind(this)}
+                // onSelecting = {this.onSelecting.bind(this)}
+                onSelectSlot = {this.onSelectSlot.bind(this)}
                 onSelectEvent = {this.onSelectEvent.bind(this)}
                 // eventPropGetter = {this.eventPropGetter.bind(this)}
                 // slotPropGetter = {this.slotPropGetter.bind(this)}
@@ -94,19 +109,23 @@ class CalendarHome extends React.Component {
                 messages = {this.messages}
                 timeslots={4}
                 step = {15}
+                onNavigate = {this.onNavigate.bind(this)}
+                longPressThreshold = {1}
+                cancelable={true}
+                // selectable={true}
+                // popup={true}
             />
         )
     }
 
     showMoreRender(props){
-        // console.log(props)
         return(
             <div 
                 style={{
                     display: 'flex', 
                     justifyContent: 'center',
-                    
-                }}>
+                }}
+            >
                 +{props}
             </div>
         )
@@ -121,16 +140,18 @@ CalendarHome.defaultProps={
             start: moment(),
             end: moment().add(1, 'hours')
         },
-    ]
+    ],
+    date: moment().add(1, 'days').toDate()
 }
 
-// const Event = (props)=>{
-//     console.log(props)
-//     return(
-//         <div>
-            
-//         </div>
-//     )
-// }
+const DateCellWrapper = (props)=>{
+    return(
+        <div>
+            <div>
+            </div>
+            {props.label}
+        </div>
+    )
+}
 
 export default CalendarHome

@@ -39,8 +39,7 @@ class Home extends React.Component {
 
         const calendarEvents  = toJS(dataStore.reservationEvents)
         const calendarCounter = toJS(dataStore.reservationCounter)
-
-        console.log(calendarCounter)
+        const nowDate = dataStore.nowDate
 
         return (
             <div className = 'home'>
@@ -61,6 +60,7 @@ class Home extends React.Component {
                 <div className = 'calendarContainer'>
                     <CalendarHome 
                         events={ calendarEvents }
+                        date={nowDate}
                     />
                 </div>
             </div>

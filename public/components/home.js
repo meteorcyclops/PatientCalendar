@@ -7,11 +7,14 @@ import moment  from 'moment'
 import CalendarTitle from './CalendarTitle' 
 import CalendarHome  from './CalendarHome'
 import EventsOverview from './EventsOverview'
+import Dialog from './elements/TDialog'
+import DialogConstent from './DialogConstent'
 
 import dataStore from '../stores/data'
 import eventTypeList from '../stores/eventTypeList'
 
 import 'syscc-icons/src/syscc-fonts.css'
+import BkImg from '../pictures/texture.png'
 
 class Home extends React.Component {
     constructor(props) {
@@ -40,7 +43,6 @@ class Home extends React.Component {
         const calendarEvents  = toJS(dataStore.reservationEvents)
         const calendarCounter = toJS(dataStore.reservationCounter)
         const nowDate = dataStore.nowDate
-
         return (
             <div className = 'home'>
                 <div className = 'homeBackground' />
@@ -63,13 +65,24 @@ class Home extends React.Component {
                         date={nowDate}
                     />
                 </div>
+                <Dialog 
+                    backCompStyle={{background:'none'}} 
+                    bodyCompStyle={{
+                        height:'75%',
+                        backgroundImage: `url("${BkImg}")`,
+                        backgroundColor: 'rgba(85, 162, 208, 1)',
+                        border: '2px solid #e0e4ff',
+                    }}
+                >
+                    <DialogConstent/>
+                </Dialog>
             </div>
         )
     }
 }
 
 Home.defaultProps={
-    docno  : '001965', //'001965'
+    docno  : '001965',//'001774', //'001965'
     chartno: null, //'04927919'
     patid  : null
 }

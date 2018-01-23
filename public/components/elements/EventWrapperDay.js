@@ -21,7 +21,7 @@ const EventWrapperMonth = (props)=>{
         /* background: rgb(243, 239, 220); */
         /* border-radius: 5px; */
         color: #17171b;
-        overflow: hidden;
+        overflow: visible;
         margin-left: 2px;
         padding-left: 5px;
         height:20px;

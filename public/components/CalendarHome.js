@@ -46,12 +46,14 @@ class CalendarHome extends React.Component {
                 event: EventWrapperMonth
             }
         }
-        this.messages = {
-            showMore: this.showMoreRender
-        }
+
+        this.more=false
     }
 
     componentWillMount(){
+        this.messages = {
+            showMore: this.showMoreRender.bind(this)
+        }
     }
 
     
@@ -59,7 +61,10 @@ class CalendarHome extends React.Component {
         if (e.slots.length>0){
             const pickDay = e.slots[0]
             dataStore.setObs( 'nowDate', pickDay )
-            dataStore.navagatorFun('day')
+            if (this.more){
+                dataStore.navagatorFun('day')
+                this.more = false
+            }
         }
         console.log('onSelectSlot', e)
     }
@@ -74,6 +79,7 @@ class CalendarHome extends React.Component {
     onSelectEvent(e){
         console.log('onSelectEvent', e)
         dataStore.setObs( 'nowDate', e.start )
+        dataStore.setObs( 'pickEvent', e.data )
     }
 
     // eventPropGetter( event, start, end, isSelected){
@@ -87,11 +93,18 @@ class CalendarHome extends React.Component {
         console.log(e)
     }
 
-    componentDidMount(){
-        let allA = document.querySelectorAll('a')
-        _.forEach(allA, (div)=>{
-            div.onClick = ()=>{}
-        })
+    moreDown(e){
+        e.stopPropagation();
+        this.more=true
+    }
+
+    componentDidUpdate(){
+        // let allA = document.querySelectorAll('a')
+        // console.log('1')
+        // _.forEach(allA, (div)=>{
+        //     console.log(div.onClick)
+        //     div.onClick = ()=>{}
+        // })
     }
     
     render() {
@@ -128,6 +141,10 @@ class CalendarHome extends React.Component {
                 style={{
                     display: 'flex', 
                     justifyContent: 'center',
+                }}
+                onMouseDown={ this.moreDown.bind(this) }
+                onClick={(e)=>{
+                    e.stopPropagation()
                 }}
             >
                 +{props}

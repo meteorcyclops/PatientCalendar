@@ -19,13 +19,16 @@ const makeEventList = (dataList) =>{
             start: moment(),
             end  : moment().add(10, 'minutes'),
             key  : 'none',
-            type: ''
+            type: '',
+            data:{}
         }
 
         const eventTime = moment( (eachData.date + (eachData.time || '2300') ), 'YYYYMMDDHHmm' )
         event.title = dataStore.userType=='doctor'? eachData.patName : eachData.title
         event.start = eventTime.toDate()
         event.end   = eventTime.add(10, 'minutes').toDate()
+
+        event.data = eachData
 
         if ( eachData.title == '預約門診' ){
             

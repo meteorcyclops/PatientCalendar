@@ -15,6 +15,8 @@ class DataStore {
     
     @observable nowDate = moment().toDate()
 
+    @observable pickEvent = null
+
     navagatorFun = null
 
     @action

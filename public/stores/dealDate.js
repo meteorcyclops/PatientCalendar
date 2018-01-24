@@ -24,7 +24,7 @@ const makeEventList = (dataList) =>{
         }
 
         const eventTime = moment( (eachData.date + (eachData.time || '2300') ), 'YYYYMMDDHHmm' )
-        event.title = dataStore.userType=='doctor'? eachData.patName : eachData.title
+        event.title = dataStore.userType=='doctor'? eachData.patName : eachData.title.slice(2)
         event.start = eventTime.toDate()
         event.end   = eventTime.add(10, 'minutes').toDate()
 

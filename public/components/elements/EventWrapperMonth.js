@@ -35,6 +35,8 @@ const EventWrapperMonth = (props)=>{
         background: ${GBcolor};
     `
 
+    let constent = null
+
     return(
         <EventDivStyle>
             <TitleLabel />

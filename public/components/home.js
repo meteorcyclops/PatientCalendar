@@ -73,6 +73,8 @@ class Home extends React.Component {
                         backgroundColor: 'rgba(85, 162, 208, 1)',
                         border: '2px solid #e0e4ff',
                     }}
+                    open={dataStore.infoOpen}
+                    closeFunc={()=>{dataStore.setObs('infoOpen', false)}}
                 >
                     <DialogConstent/>
                 </Dialog>
@@ -82,8 +84,8 @@ class Home extends React.Component {
 }
 
 Home.defaultProps={
-    docno  : '001965',//'001774', //'001965'
-    chartno: null, //'04927919'
+    docno  : null,//'001774', //'001965'
+    chartno: '03079381', //'04927919'
     patid  : null
 }
 

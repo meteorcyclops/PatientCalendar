@@ -25,7 +25,15 @@ class TitleToolBar extends React.Component {
     }
 
     navigate = action => {
-        this.props.onNavigate(action)
+        return()=>{
+            if(action=='preMonth'){
+                dataStore.setObs('nowDate', moment(dataStore.nowDate).add(1, 'months').toDate() )
+            } else if (action=='today'){
+                dataStore.setObs('nowDate', moment().toDate() )
+            } else if (action=='nextMonth'){
+                dataStore.setObs('nowDate', moment(dataStore.nowDate).subtract(1, 'months').toDate())
+            }
+        }
     }
     
     view = view => {
@@ -51,13 +59,13 @@ class TitleToolBar extends React.Component {
         return (
             <TitleBody>
                 <WalkDivGroup>
-                    <WalkDiv onClick={this.navigate.bind(null, navigate.PREVIOUS)} >
+                    <WalkDiv onClick={this.navigate.bind(this)('preMonth')} >
                         <FontAwesomeIcon icon={ faAngleLeft }/>
                     </WalkDiv>
-                    <WalkDiv onClick={this.navigate.bind(null, navigate.TODAY)} >
+                    <WalkDiv onClick={this.navigate.bind(this)('today')} >
                         <FontAwesomeIcon icon={ faCalendarCheck }/>
                     </WalkDiv>
-                    <WalkDiv onClick={this.navigate.bind(null, navigate.NEXT)} >
+                    <WalkDiv onClick={this.navigate.bind(this)('nextMonth')} >
                         <FontAwesomeIcon icon={ faAngleRight }/>
                     </WalkDiv>
                 </WalkDivGroup>

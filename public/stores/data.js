@@ -4,6 +4,7 @@ import _ from 'lodash'
 import moment from 'moment'
 
 import { makeEventList } from './dealDate'
+import TDialog from '../components/elements/TDialog';
 
 class DataStore {
     @observable reservationData = []
@@ -11,11 +12,11 @@ class DataStore {
     @observable reservationCounter = false
     @observable getReservationsReady = true
 
-    @observable userType = 'doctor' // patient
-    
+    @observable userType = 'patient' // patient, doctor
     @observable nowDate = moment().toDate()
 
     @observable pickEvent = null
+    @observable infoOpen = false
 
     navagatorFun = null
 

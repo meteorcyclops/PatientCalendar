@@ -75,7 +75,6 @@ class DialogConstent extends React.Component {
             return <div></div>
         }
         const Constent = this.makeConstent(data)
-        console.log(data)
         return (
             <div style={{color:'white' }}>
                 <div style={{marginBottom:'20px'}}>

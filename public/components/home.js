@@ -43,6 +43,7 @@ class Home extends React.Component {
         const calendarEvents  = toJS(dataStore.reservationEvents)
         const calendarCounter = toJS(dataStore.reservationCounter)
         const nowDate = dataStore.nowDate
+        console.log(nowDate)
         return (
             <div className = 'home'>
                 <div className = 'homeBackground' />
@@ -63,6 +64,7 @@ class Home extends React.Component {
                     <CalendarHome 
                         events={ calendarEvents }
                         date={nowDate}
+                        view={dataStore.nowView}
                     />
                 </div>
                 <Dialog 
@@ -85,7 +87,7 @@ class Home extends React.Component {
 
 Home.defaultProps={
     docno  : null,//'001774', //'001965'
-    chartno: '03079381', //'04927919'
+    chartno: '04194437', //'04927919'
     patid  : null
 }
 

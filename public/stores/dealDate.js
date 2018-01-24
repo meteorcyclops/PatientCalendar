@@ -13,14 +13,17 @@ const makeEventList = (dataList) =>{
         check: 0
     }
 
-    const eventList = _.map( dataList, (eachData, key)=>{
+    const orderData = _.sortBy(dataList, (x)=> moment( (x.date + (x.time || '0000') ), 'YYYYMMDDHHmm' ) )
+
+    const eventList = _.map( orderData, (eachData, key)=>{
         let event = {
             title: '',
             start: moment(),
             end  : moment().add(10, 'minutes'),
             key  : 'none',
             type: '',
-            data:{}
+            data:{},
+            no: key
         }
 
         //------ 沒有時間的，當成全日事件
@@ -28,7 +31,7 @@ const makeEventList = (dataList) =>{
             event.allDay = true
         }
         // 
-        const eventTime = moment( (eachData.date + (eachData.time || '2300') ), 'YYYYMMDDHHmm' )
+        const eventTime = moment( (eachData.date + (eachData.time || '0000') ), 'YYYYMMDDHHmm' )
         event.title = dataStore.userType=='doctor'? eachData.patName : eachData.title
         event.start = eventTime.toDate()
         event.end   = eventTime.add(10, 'minutes').toDate()

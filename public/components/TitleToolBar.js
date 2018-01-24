@@ -9,6 +9,7 @@ import { faCalendarCheck } from '@fortawesome/fontawesome-free-regular'
 import { navigate } from 'react-big-calendar/lib/utils/constants'
 
 import dataStore from '../stores/data'
+import { findNextEventDate, findPreEventDate } from '../stores/util'
 
 class TitleToolBar extends React.Component {
     constructor(props) {
@@ -26,18 +27,31 @@ class TitleToolBar extends React.Component {
 
     navigate = action => {
         return()=>{
-            if(action=='preMonth'){
-                dataStore.setObs('nowDate', moment(dataStore.nowDate).add(1, 'months').toDate() )
-            } else if (action=='today'){
-                dataStore.setObs('nowDate', moment().toDate() )
-            } else if (action=='nextMonth'){
-                dataStore.setObs('nowDate', moment(dataStore.nowDate).subtract(1, 'months').toDate())
+            const option = dataStore.nowView + 's'
+            
+            if(dataStore.eventMode){
+                if(action=='pre'){
+                    dataStore.setObs('nowDate', findPreEventDate() )
+                    console.log(dataStore.nowDate)
+                } else if (action=='today'){
+                    dataStore.setObs('nowDate', moment().toDate() )
+                } else if (action=='next'){
+                    dataStore.setObs('nowDate', findNextEventDate() )
+                }
+            }else{
+                if(action=='pre'){
+                    dataStore.setObs('nowDate', moment(dataStore.nowDate).subtract(1, option).toDate() )
+                } else if (action=='today'){
+                    dataStore.setObs('nowDate', moment().toDate() )
+                } else if (action=='next'){
+                    dataStore.setObs('nowDate', moment(dataStore.nowDate).add(1, option).toDate() )
+                }
             }
         }
     }
     
     view = view => {
-        this.props.onViewChange(view)
+        dataStore.setObs('nowView', view)
     }
 
     render() {
@@ -59,13 +73,13 @@ class TitleToolBar extends React.Component {
         return (
             <TitleBody>
                 <WalkDivGroup>
-                    <WalkDiv onClick={this.navigate.bind(this)('preMonth')} >
+                    <WalkDiv onClick={this.navigate('pre')} >
                         <FontAwesomeIcon icon={ faAngleLeft }/>
                     </WalkDiv>
-                    <WalkDiv onClick={this.navigate.bind(this)('today')} >
+                    <WalkDiv onClick={this.navigate('today')} >
                         <FontAwesomeIcon icon={ faCalendarCheck }/>
                     </WalkDiv>
-                    <WalkDiv onClick={this.navigate.bind(this)('nextMonth')} >
+                    <WalkDiv onClick={this.navigate('next')} >
                         <FontAwesomeIcon icon={ faAngleRight }/>
                     </WalkDiv>
                 </WalkDivGroup>

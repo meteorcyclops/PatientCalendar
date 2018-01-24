@@ -14,9 +14,11 @@ class DataStore {
 
     @observable userType = 'patient' // patient, doctor
     @observable nowDate = moment().toDate()
+    @observable nowView = 'month'
 
     @observable pickEvent = null
     @observable infoOpen = false
+    @observable eventMode = true
 
     navagatorFun = null
 

@@ -111,6 +111,7 @@ class CalendarHome extends React.Component {
     render() {
         const events = this.props.events
         const date = this.props.date
+        const view = this.props.view
 
         return (
             <BigCalendar
@@ -130,6 +131,8 @@ class CalendarHome extends React.Component {
                 onNavigate = {this.onNavigate.bind(this)}
                 longPressThreshold = {1}
                 cancelable={true}
+                view = {view}
+                onView = {()=>{}}
                 // selectable={true}
                 // popup={true}
             />

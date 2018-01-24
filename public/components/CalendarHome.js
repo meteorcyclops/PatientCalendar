@@ -80,6 +80,7 @@ class CalendarHome extends React.Component {
         console.log('onSelectEvent', e)
         dataStore.setObs( 'nowDate', e.start )
         dataStore.setObs( 'pickEvent', e.data )
+        dataStore.setObs( 'infoOpen', true )
     }
 
     // eventPropGetter( event, start, end, isSelected){

@@ -39,11 +39,21 @@ class DialogConstent extends React.Component {
                 })
             }
             else if (item.column == 'date'){
-                constent = (
-                    <div >
-                        {moment( (data.date) + (data.time || '0000'), 'YYYYMMDDHHmm').format('YYYY/MM/DD HH:mm')}
-                    </div>
-                )
+                
+                if (data.time){
+                    constent = (
+                        <div >
+                            {moment( (data.date) + data.time, 'YYYYMMDDHHmm').format('YYYY/MM/DD HH:mm')}
+                        </div>
+                    ) 
+                } else {
+                    constent = (
+                        <div >
+                            {moment( (data.date), 'YYYYMMDD').format('YYYY/MM/DD')}
+                        </div>
+                    )
+                }
+
             }
             else{
                 constent = (

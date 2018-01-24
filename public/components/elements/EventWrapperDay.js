@@ -17,7 +17,7 @@ const EventWrapperMonth = (props)=>{
         align-items: center;
         /* justify-content: center; */
         font-family: 微軟正黑體;
-        font-size: 14px;
+        font-size: 12px;
         /* background: rgb(243, 239, 220); */
         /* border-radius: 5px; */
         color: #17171b;
@@ -35,17 +35,35 @@ const EventWrapperMonth = (props)=>{
         background: ${GBcolor};
     `
 
-    const startStr = moment( props.event.start ).format('HH:DD')
+    const content = makeDayDiv(props.event)
 
     return(
         <EventDivStyle>
             <TitleLabel />
             <span style={{height: '20px',paddingTop: '2px'}}>
-                {startStr} {props.event.title}
+                {content}
             </span>
         </EventDivStyle>
     )
 
+}
+
+const makeDayDiv=(event)=>{
+    const startStr = event.allDay?'':moment( event.start ).format('HH:mm')
+    switch(event.title){
+        case '預約門診': 
+            return `${startStr} ${event.title}(${event.data.DOC_NAME})-${event.data.MEMO}`
+        case '預約住院': 
+            return `${startStr} ${event.title}`
+        case '預約手術': 
+            return `${startStr} ${event.title}`
+        case '預約排檢': 
+            return `${startStr} ${event.title}`
+        case '預約排檢(內視鏡)': 
+            return `${startStr} ${event.title}`
+        case '預約健檢': 
+            return `${startStr} ${event.title}`
+    }
 }
 
 

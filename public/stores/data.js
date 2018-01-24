@@ -28,7 +28,7 @@ class DataStore {
     getReservations = (queryItem)=> {
         this.getReservationsReady = false
         fetch( 
-            'https://ehis.kfsyscc.org/service',
+            'http://localhost:8000/service', //'https://ehis.kfsyscc.org/service'
             {
                 method: 'POST',
                 headers: new Headers({ 
@@ -56,7 +56,6 @@ class DataStore {
                 const pocessingData = makeEventList(data)
                 this.reservationEvents  = pocessingData.data
                 this.reservationCounter = pocessingData.counter
-
             }
             this.getReservationsReady = true
         } )

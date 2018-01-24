@@ -7,6 +7,8 @@ $fontColor: rgb(25, 40, 49);
     overflow: hidden;
     // border: 1px solid black;
     padding:40px 0px 40px 0px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 .rbc-month-view{
     background: #fefefeb3;
@@ -72,11 +74,11 @@ $fontColor: rgb(25, 40, 49);
 
 // disable all day
 .rbc-time-view .rbc-row:nth-child(2) {
-    display: none;
+    // display: none;
 }
 
 .rbc-time-view .rbc-row div:nth-child(1) {
-    display: none;
+    // display: none;
 }
 //
 

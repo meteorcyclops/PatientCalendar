@@ -74,7 +74,7 @@ class Home extends React.Component {
                         border: '2px solid #e0e4ff',
                     }}
                     open={dataStore.infoOpen}
-                    closeFunc={()=>{dataStore.setObs('infoOpen', false)}}
+                    onDialogClose={()=>{dataStore.setObs('infoOpen', false)}}
                 >
                     <DialogConstent/>
                 </Dialog>

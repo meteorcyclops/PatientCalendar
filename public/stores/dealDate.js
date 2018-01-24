@@ -23,10 +23,16 @@ const makeEventList = (dataList) =>{
             data:{}
         }
 
+        //------ 沒有時間的，當成全日事件
+        if (!eachData.time){
+            event.allDay = true
+        }
+        // 
         const eventTime = moment( (eachData.date + (eachData.time || '2300') ), 'YYYYMMDDHHmm' )
-        event.title = dataStore.userType=='doctor'? eachData.patName : eachData.title.slice(2)
+        event.title = dataStore.userType=='doctor'? eachData.patName : eachData.title
         event.start = eventTime.toDate()
         event.end   = eventTime.add(10, 'minutes').toDate()
+
 
         event.data = eachData
 
@@ -53,6 +59,7 @@ const makeEventList = (dataList) =>{
         } else if (eachData.title == '預約排檢' || eachData.title == '預約排檢(內視鏡)'){
         
             event.type = 'check'
+            event.title = eachData.EXAMCNAME
             conterObj.check += 1
         
         }

@@ -50,6 +50,7 @@ const EventWrapperMonth = (props)=>{
 
 const makeDayDiv=(event)=>{
     const startStr = event.allDay?'':moment( event.start ).format('HH:mm')
+    console.log(event)
     switch(event.title){
         case '預約門診': 
             return `${startStr} ${event.title}(${event.data.DOC_NAME})-${event.data.MEMO}`
@@ -58,7 +59,7 @@ const makeDayDiv=(event)=>{
         case '預約手術': 
             return `${startStr} ${event.title}`
         case '預約排檢': 
-            return `${startStr} ${event.title}`
+            return `${startStr} ${event.data.EXAMCNAME}`
         case '預約排檢(內視鏡)': 
             return `${startStr} ${event.title}`
         case '預約健檢': 

@@ -59,7 +59,6 @@ const makeEventList = (dataList) =>{
         } else if (eachData.title == '預約排檢' || eachData.title == '預約排檢(內視鏡)'){
         
             event.type = 'check'
-            event.title = eachData.EXAMCNAME
             conterObj.check += 1
         
         }

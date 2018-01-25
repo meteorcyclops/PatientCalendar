@@ -18,9 +18,16 @@ class DataStore {
 
     @observable pickEvent = null
     @observable infoOpen = false
+    @observable modeInfoOpen = false
     @observable eventMode = true
 
     navagatorFun = null
+    modeInfoData = {
+        close: `普通模式
+此模式下按右(左)鍵頭會跳至下(上)一個時間範圍(月，週，日)`,
+        open: `事件模式
+此模式下按右(左)鍵頭會跳至下(上)一個事件`
+    }
 
     @action
     setObs( key, value ){

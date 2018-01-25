@@ -2,9 +2,10 @@ import React from 'react'
 import moment from 'moment'
 import _ from 'lodash'
 import styled from 'styled-components'
+import { observer } from 'mobx-react'
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faAngleRight, faAngleLeft } from '@fortawesome/fontawesome-free-solid' 
+import { faAngleRight, faAngleLeft, faBriefcase } from '@fortawesome/fontawesome-free-solid' 
 import { faCalendarCheck } from '@fortawesome/fontawesome-free-regular' 
 import { navigate } from 'react-big-calendar/lib/utils/constants'
 
@@ -32,7 +33,6 @@ class TitleToolBar extends React.Component {
             if(dataStore.eventMode){
                 if(action=='pre'){
                     dataStore.setObs('nowDate', findPreEventDate() )
-                    console.log(dataStore.nowDate)
                 } else if (action=='today'){
                     dataStore.setObs('nowDate', moment().toDate() )
                 } else if (action=='next'){
@@ -63,12 +63,17 @@ class TitleToolBar extends React.Component {
 
         const viewNames = this.props.views
 
-        const TitleBody = this.styles.titleBody
-        const TitleDiv = this.styles.titleDiv
-        const WalkDiv   = this.styles.walkDiv
-        const WalkDivGroup = this.styles.walkDivGroup
-        const ViewDivGroup = this.styles.viewDivGroup
-        const ViewDivStamp = this.styles.viewDivStamp
+        const eventMode = dataStore.eventMode
+
+        const comps = this.styles({eventMode})
+        const TitleBody    = comps.titleBody
+        const TitleDiv     = comps.titleDiv
+        const WalkDiv      = comps.walkDiv
+        const WalkDivGroup = comps.walkDivGroup
+        const ViewDivGroup = comps.viewDivGroup
+        const ViewDivStamp = comps.viewDivStamp
+        const ModeControl  = comps.modeControl
+
 
         return (
             <TitleBody>
@@ -104,61 +109,81 @@ class TitleToolBar extends React.Component {
                         D
                     </ViewDivStamp>
                 </ViewDivGroup>
+                <ModeControl 
+                    onClick={()=>{
+                        dataStore.setObs('eventMode', !dataStore.eventMode)
+                        dataStore.setObs('modeInfoOpen', !dataStore.modeInfoOpen)
+                    }}
+                >
+                    <FontAwesomeIcon icon={ faBriefcase }/>
+                </ModeControl>
             </TitleBody>
         )
     }
 
-    styles = {
-        titleBody:styled.div`
-            position: absolute;
-            top:0px; left:0px; right:0px; bottom: 0px;
-            width: 100%;
-            display: flex; flex-direction: row;
-            justify-content: center;
-        `,
-        walkDivGroup:styled.div`
-            position: absolute;
-            right: 0px; bottom: 0px;
-            display: flex; flex-direction: row;
-            align-items: center;
-        `,
-        walkDiv:styled.div`
-            padding: 3px;
-            display: flex; 
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-size: 20px;
-            color: white;
-            margin: 0px 2px;
-            &:active {
-                background: #3174ad;
-            }
-        `,
-        titleDiv:styled.div`
-            color: white;
-            font-size: 20px;
-            font-weight: bold
-        `,
-        viewDivGroup:styled.div`
-            position: absolute;
-            right: 0px; top: 0px;
-            display: flex; flex-direction: row;
-            align-items: center;
-            margin-right:10px;
-            font-size: 20px;
-            font-family: monospace;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.6)
-        `,
-        viewDivStamp:styled.div`
-            padding: 2px 6px
-        `,
-
+    styles({eventMode=false}) {
+        return(
+        {
+            titleBody:styled.div`
+                position: absolute;
+                top:0px; left:0px; right:0px; bottom: 0px;
+                width: 100%;
+                display: flex; flex-direction: row;
+                justify-content: center;
+            `,
+            walkDivGroup:styled.div`
+                position: absolute;
+                right: 0px; bottom: 0px;
+                display: flex; flex-direction: row;
+                align-items: center;
+            `,
+            walkDiv:styled.div`
+                padding: 3px;
+                display: flex; 
+                align-items: center;
+                justify-content: center;
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                font-size: 20px;
+                color: white;
+                margin: 0px 2px;
+                &:active {
+                    background: #3174ad;
+                }
+            `,
+            titleDiv:styled.div`
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+            `,
+            viewDivGroup:styled.div`
+                position: absolute;
+                right: 0px; top: 0px;
+                display: flex; flex-direction: row;
+                align-items: center;
+                margin-right:10px;
+                font-size: 20px;
+                font-family: monospace;
+                font-weight: bold;
+                color: rgba(255, 255, 255, 0.6);
+            `,
+            viewDivStamp:styled.div`
+                padding: 2px 6px;
+            `,
+            modeControl:styled.div`
+                position: absolute;
+                right: 50%; bottom: 0px;
+                display: flex; flex-direction: row;
+                align-items: center;
+                border-radius: 50%;
+                font-size: 25px;
+                margin: 2px;
+                color: ${eventMode?'#ff2805':'#ffffff80'};
+            `
+        })
     }
 }
 
 
-export default TitleToolBar
+export default observer(TitleToolBar)

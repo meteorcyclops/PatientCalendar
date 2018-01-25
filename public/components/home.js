@@ -9,6 +9,7 @@ import CalendarHome  from './CalendarHome'
 import EventsOverview from './EventsOverview'
 import Dialog from './elements/TDialog'
 import DialogConstent from './DialogConstent'
+import ModeInfoDisplay from './elements/ModeInfoDisplay'
 
 import dataStore from '../stores/data'
 import eventTypeList from '../stores/eventTypeList'
@@ -43,7 +44,7 @@ class Home extends React.Component {
         const calendarEvents  = toJS(dataStore.reservationEvents)
         const calendarCounter = toJS(dataStore.reservationCounter)
         const nowDate = dataStore.nowDate
-        console.log(nowDate)
+
         return (
             <div className = 'home'>
                 <div className = 'homeBackground' />
@@ -80,6 +81,10 @@ class Home extends React.Component {
                 >
                     <DialogConstent/>
                 </Dialog>
+                <ModeInfoDisplay 
+                    toggle={dataStore.modeInfoOpen} 
+                    msg = {dataStore.modeInfoData[dataStore.eventMode?'open':'close']}
+                />
             </div>
         )
     }

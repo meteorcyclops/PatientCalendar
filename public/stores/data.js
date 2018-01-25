@@ -19,7 +19,7 @@ class DataStore {
     @observable pickEvent = null
     @observable infoOpen = false
     @observable modeInfoOpen = false
-    @observable eventMode = true
+    @observable eventMode = false
 
     navagatorFun = null
     modeInfoData = {

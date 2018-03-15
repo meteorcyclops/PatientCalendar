@@ -2,13 +2,10 @@ import React from 'react'
 import _ from 'lodash'
 import moment  from 'moment'
 import styled from 'styled-components'
-import eventTypeList from '../../stores/eventTypeList'
 
-const EventWrapperMonth = (props)=>{
+const EventWrapperHeader = (props)=>{
     
-    const type = props.event.type
-    const thisType = eventTypeList.filter((x)=>(x.value == type)) 
-    const GBcolor = thisType.length>0?thisType[0].color: 'white'
+    console.log(props)
 
     const EventDivStyle=styled.div`
         display: flex;
@@ -28,21 +25,12 @@ const EventWrapperMonth = (props)=>{
         pointer-events: none;
     `
 
-    const TitleLabel=styled.div`
-        position: absolute;
-        left: 0px; bottom: 0px;
-        height: 100%;
-        width:3px;
-        background: ${GBcolor};
-    `
-
     let constent = null
 
     return(
         <EventDivStyle>
-            <TitleLabel />
             <span>
-                {props.event.title}
+                {'1234'}
             </span>
         </EventDivStyle>
     )
@@ -51,4 +39,4 @@ const EventWrapperMonth = (props)=>{
 
 
 
-export default EventWrapperMonth
+export default EventWrapperHeader

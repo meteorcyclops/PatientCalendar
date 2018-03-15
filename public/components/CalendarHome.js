@@ -10,6 +10,7 @@ import '../css/calendarBody.scss'
 import TitleToolBar from './TitleToolBar'
 import EventWrapperMonth from './elements/EventWrapperMonth'
 import EventWrapperDay from './elements/EventWrapperDay'
+import EventWrapperHeader from './elements/EventWrapperHeader'
 
 import dataStore from '../stores/data'
 
@@ -36,15 +37,19 @@ class CalendarHome extends React.Component {
             //   header: EventWrapperDay,
               event: EventWrapperDay
             },
-            // week?: {
-            //   header?: ReactClass<any>,
-            //   event?: ReactClass<any>
-            // },
+            week: {
+            //   header: EventWrapperHeader,
+              event: EventWrapperMonth
+            },
             month: {
                 // header?: ReactClass<any>,
                 dateHeader: DateCellWrapper,
                 event: EventWrapperMonth
             }
+        }
+
+        this.formats = {
+            dayFormat:  'M/DD dd'
         }
 
         this.more=false
@@ -133,6 +138,7 @@ class CalendarHome extends React.Component {
                 cancelable={true}
                 view = {view}
                 onView = {()=>{}}
+                formats={this.formats}
                 // selectable={true}
                 // popup={true}
             />
@@ -155,6 +161,8 @@ class CalendarHome extends React.Component {
             </div>
         )
     }
+
+
 }
 
 CalendarHome.defaultProps={

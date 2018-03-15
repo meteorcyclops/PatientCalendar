@@ -10,8 +10,10 @@ import EventsOverview from './EventsOverview'
 import Dialog from './elements/TDialog'
 import DialogConstent from './DialogConstent'
 import ModeInfoDisplay from './elements/ModeInfoDisplay'
+import EntryInput from './EntryInput'
 
 import dataStore from '../stores/data'
+import personData from '../stores/person'
 import eventTypeList from '../stores/eventTypeList'
 
 import 'syscc-icons/src/syscc-fonts.css'
@@ -27,14 +29,16 @@ class Home extends React.Component {
         this.patid   = this.props.patid
     }
 
-    componentWillMount(){
+    componentWillReceiveProps(props){
         let queryItem = {}
         
         queryItem.minDate = moment().format('YYYYMMDD')
         
-        if (this.chartno) { queryItem.CHART_NO = this.chartno }
-        if (this.patid)   { queryItem.PAT_IDNO = this.patid }
-        if (this.docno)   { queryItem.DOC_NO   = this.docno }
+        if (props.chartno) { queryItem.CHART_NO = props.chartno }
+        if (props.patid)   { queryItem.PAT_IDNO = props.patid }
+        if (props.docno)   { queryItem.DOC_NO   = props.docno }
+
+        console.log(queryItem)
 
         dataStore.getReservations( queryItem )
     }
@@ -48,8 +52,11 @@ class Home extends React.Component {
         return (
             <div className = 'home'>
                 <div className = 'homeBackground' />
-                <div className='homeTitle'>
-                    <CalendarTitle />
+                <div 
+                    className='homeTitle'
+                    onClick={()=>dataStore.setObs('entryOpen', true)}
+                >
+                    <CalendarTitle id= {personData.id}  name= {personData.name} />
                 </div>
                 <div className='homeActionPlane'>
                     {
@@ -75,11 +82,27 @@ class Home extends React.Component {
                         backgroundImage: `url("${BkImg}")`,
                         backgroundColor: 'rgba(85, 162, 208, 1)',
                         border: '2px solid #e0e4ff',
+                        maxWidth:'400px', 
                     }}
                     open={dataStore.infoOpen}
                     onDialogClose={()=>{dataStore.setObs('infoOpen', false)}}
                 >
                     <DialogConstent/>
+                </Dialog>
+                <Dialog 
+                    backCompStyle={{ background:'none'}} 
+                    bodyCompStyle={{
+                        height:'40%',
+                        backgroundImage: `url("${BkImg}")`,
+                        backgroundColor: 'rgba(85, 162, 208, 1)',
+                        border: '2px solid #e0e4ff', 
+                        maxWidth:'400px', 
+                        maxHeight:'300px' 
+                    }}
+                    open={dataStore.entryOpen}
+                    onDialogClose={()=>{dataStore.setObs('entryOpen', false)}}
+                >
+                    <EntryInput />
                 </Dialog>
                 <ModeInfoDisplay 
                     toggle={dataStore.modeInfoOpen} 
@@ -92,8 +115,8 @@ class Home extends React.Component {
 
 Home.defaultProps={
     docno  : null,//'001774', //'001965'
-    chartno: '04194437', //'04927919'
-    patid  : null
+    chartno: null, //'05131925'
+    patid  : null //'A221322835' 'G220919189'
 }
 
 export default observer(Home)

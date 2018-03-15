@@ -20,10 +20,13 @@ $fontColor: rgb(25, 40, 49);
     background: #fefefeb3;
     border-radius: 10px;
     z-index: 1;
+    margin: 0px 25px;
+    width: auto;
 }
 
 .rbc-today {
-    border: 2px solid #7ab4d8!important;
+    // border: 2px solid #7ab4d8!important;
+    background: #aadbff;
 }
 .rbc-current>div>div{
     position: absolute;
@@ -47,6 +50,7 @@ $fontColor: rgb(25, 40, 49);
     font-size: 12px;
     background: none;
     border: none!important;
+    color: #261e1e;
 }
 
 .rbc-event-label{

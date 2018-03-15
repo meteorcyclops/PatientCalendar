@@ -27,45 +27,68 @@ class DialogConstent extends React.Component {
         
         _.forEach(printList, (item, key)=>{
             
+            const columnKey = item.column
             let constent
 
-            if ( Array.isArray(item.column) ){
-                constent = _.map(data[item.column], (each, idx)=>{
+            if ( Array.isArray( mobx.toJS(data[columnKey]) ) ){
+                constent = _.map(data[columnKey], (each, idx)=>{
+                    // 因醫師的陣列內容是物件，只要是物件都抓 key： name
+                    let value = _.isObject( each )? each.name : each 
+
                     return(
-                        <div key={ `dc${idx}`}>
-                            {each}
+                        <div key={ `${key} ${idx}`}>
+                            {value}
                         </div>
                     )
                 })
             }
-            else if (item.column == 'date'){
-                
+            else if (columnKey == 'date'){
                 if (data.time){
                     constent = (
                         <div >
-                            {moment( (data.date) + data.time, 'YYYYMMDDHHmm').format('YYYY/MM/DD HH:mm')}
+                            {moment( (data.date) + data.time, 'YYYYMMDDHHmm').format('HH:mm')}
                         </div>
                     ) 
                 } else {
                     constent = (
                         <div >
-                            {moment( (data.date), 'YYYYMMDD').format('YYYY/MM/DD')}
+                            {moment( (data.date), 'YYYYMMDD').format('')}
                         </div>
                     )
                 }
-
             }
             else{
+
+                let columnArray = columnKey.split('.')
+
+                let text = data[ columnArray.shift() ]
+
+                _.forEach(columnArray, (value) =>{
+                    text = text[value]
+                })
+
                 constent = (
                     <div >
-                        {data[item.column]}
+                        {text}
                     </div>
                 )
             }
             
             let comp = (
-                <div key = {key} style={{marginBottom:'20px'}}>
-                    <div>
+                <div 
+                    key = {key} 
+                    style={{
+                        margin:'10px 0px',
+                        display:'flex',
+                        flexDirection:'row',
+                        alignItems: 'center',
+                    }}
+                >
+                    <div
+                        style={{
+                            width:'85px'
+                        }}
+                    >
                         {item.label}:
                     </div>
                     <div>
@@ -88,9 +111,14 @@ class DialogConstent extends React.Component {
         return (
             <div style={{color:'white' }}>
                 <div style={{marginBottom:'20px'}}>
-                    {data.title}
+                    {`${data.title} ${ moment( data.date, 'YYYYMMDD').format('YYYY-MM-DD')}`}
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <div
+                    style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        fontSize: '15px'
+                    }}>
                     {Constent}
                 </div>
             </div>

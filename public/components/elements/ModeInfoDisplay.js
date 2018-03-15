@@ -33,16 +33,18 @@ class ModeInfoDisplay extends React.Component {
         const OutLine=styled.div`
             position: absolute;
             top:40%; left: 0px; right: 0px;
-            width: 50%; margin: 0 auto;
+            width: 70%; margin: 0 auto;
             display: flex; flex-direction: row;
             justify-content: center;
             z-index:2;
-            background: #01395cba;
+            background: #01395ceb;
             color: white;
             border-radius: 10px;
-            white-space:pre;
+            white-space:pre-line;
             min-height:60px;
             text-align:center;
+            padding:10px;
+            pointer-events:none;
             ${  this.isFirst?'opacity: 0;':`
                 animation: .5s ${fadeOut} ease-out;
                 animation-delay: 3s;

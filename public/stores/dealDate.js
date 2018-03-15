@@ -5,12 +5,15 @@ import dataStore from './data'
 
 const makeEventList = (dataList) =>{
 
+    // 做出最後顯示事件的 item
+
     const conterObj = {
         opd: 0,
         inp: 0,
         health: 0,
         opr: 0,
-        check: 0
+        check: 0,
+        rad: 0
     }
 
     const orderData = _.sortBy(dataList, (x)=> moment( (x.date + (x.time || '0000') ), 'YYYYMMDDHHmm' ) )
@@ -22,7 +25,7 @@ const makeEventList = (dataList) =>{
             end  : moment().add(10, 'minutes'),
             key  : 'none',
             type: '',
-            data:{},
+            data: {},
             no: key
         }
 
@@ -41,26 +44,37 @@ const makeEventList = (dataList) =>{
 
         if ( eachData.title == '預約門診' ){
             
+            event.title = '門診'
             event.type = 'opd'
             conterObj.opd += 1
      
         } else if (eachData.title == '預約健檢'){
      
+            event.title = '健檢'
             event.type = 'health'
             conterObj.health += 1
      
         } else if (eachData.title == '預約住院'){
      
+            event.title = '住院'
             event.type = 'inp'
             conterObj.inp += 1
      
         } else if (eachData.title == '預約手術'){
         
+            event.title = '手術'
             event.type = 'opr'
             conterObj.opr += 1
         
+        } else if (eachData.title == '預約放腫'){
+            
+            event.title = '放腫'
+            event.type = 'rad'
+            conterObj.rad += 1
+        
         } else if (eachData.title == '預約排檢' || eachData.title == '預約排檢(內視鏡)'){
         
+            event.title = '排檢'
             event.type = 'check'
             conterObj.check += 1
         

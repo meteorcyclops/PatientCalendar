@@ -60,6 +60,10 @@ const EventIcons = (props)=> {
         
         classN = "emr-eye-plus"
         // return <img style={{ fontWeight:'bold', color: '#04af04' }} src={CheckIcon} />
+    } else if (iconType == '預約放腫'){
+        
+        classN = "emr-RAD_1_revert_noB"
+
     }
     return (
         <i 

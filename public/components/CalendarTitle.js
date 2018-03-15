@@ -15,25 +15,26 @@ class CalendarTitle extends React.Component {
     }
 
     makeTitle() {
+
+        let name = ''
+        let tail = ''
+
         if (this.props.type === 'doctor'){
-            return [
-                <span key='name' style = { { marginRight: '10px' } }>
-                    {this.props.info.name}
-                </span>,
-                <span key='text'>
-                    的病人預約
-                </span>
-            ]
+            name = this.props.name
+            tail='的病人預約'
         } else if (this.props.type === 'patient'){
-            return [
-                <span key='name' style = { { marginRight: '10px' } }>
-                    {this.props.info.name}
-                </span>,
-                <span key='text'>
-                    的預約
-                </span>
-            ]
+            name = this.props.name
+            tail='的預訂行程'
         }
+
+        return [
+            <span key='name' style = { { marginRight: '10px' } }>
+                {name}
+            </span>,
+            <span key='text'>
+                {tail}
+            </span>
+        ]
     }
 
     render() {
@@ -50,11 +51,9 @@ class CalendarTitle extends React.Component {
 }
 
 CalendarTitle.defaultProps={
-    type: 'doctor', // patient
-    info: {
-        id: '001965',
-        name: '鄧秀琴'
-    }
+    type: 'patient', // doctor, patient
+    id: '',
+    name: ''
 }
 
 export default CalendarTitle

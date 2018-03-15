@@ -75,7 +75,7 @@ html, body, #app, .home{
     padding: 5px;
     display: flex;
     flex-flow: row wrap;
-    width: 70%;
+    min-width: 70%;
     justify-content: center;
     align-items: center;
     border-radius: 6px;

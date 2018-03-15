@@ -17,6 +17,11 @@ const eventTypeList = [
     {
         title: '預約排檢',
         value: 'check',
+        color: 'rgb(255, 92, 0)'
+    },
+    {
+        title: '預約放腫',
+        value: 'rad',
         color: 'rgb(255, 54, 232)'
     },
     // {

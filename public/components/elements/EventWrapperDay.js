@@ -25,6 +25,7 @@ const EventWrapperMonth = (props)=>{
         margin-left: 2px;
         padding-left: 5px;
         height:20px;
+        pointer-events: none;
     `
 
     const TitleLabel=styled.div`
@@ -40,7 +41,7 @@ const EventWrapperMonth = (props)=>{
     return(
         <EventDivStyle>
             <TitleLabel />
-            <span style={{height: '20px',paddingTop: '2px'}}>
+            <span style={{ color:'rgb(10, 67, 102)'}}>
                 {content}
             </span>
         </EventDivStyle>
@@ -50,20 +51,24 @@ const EventWrapperMonth = (props)=>{
 
 const makeDayDiv=(event)=>{
     const startStr = event.allDay?'':moment( event.start ).format('HH:mm')
+
+    const data = event.data
     console.log(event)
-    switch(event.title){
+    switch(data.title){
         case '預約門診': 
-            return `${startStr} ${event.title}(${event.data.DOC_NAME})-${event.data.MEMO}`
+            return `${startStr} ${data.title}(${data.DOC_NAME})${ data.MEMO? '-' + data.MEMO: '' }`
         case '預約住院': 
-            return `${startStr} ${event.title}`
+            return `${startStr} ${data.title}`
         case '預約手術': 
-            return `${startStr} ${event.title}`
+            return `${startStr} ${data.beforeOprs.length>0?data.beforeOprs[0]:''}`
         case '預約排檢': 
-            return `${startStr} ${event.data.EXAMCNAME}`
+            return `${startStr} ${data.EXAMCNAME}`
         case '預約排檢(內視鏡)': 
-            return `${startStr} ${event.title}`
+            return `${startStr} ${data.ITM_NAME}`
         case '預約健檢': 
-            return `${startStr} ${event.title}`
+            return `${startStr} ${data.title}`
+        case '預約放腫': 
+            return `${startStr} ${data.ActivityNote}, ${data.ShortComment}`
     }
 }
 

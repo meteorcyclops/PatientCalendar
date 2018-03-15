@@ -43,6 +43,7 @@ class DialogConstent extends React.Component {
                 })
             }
             else if (columnKey == 'date'){
+                console.log(data.time)
                 if (data.time){
                     constent = (
                         <div >
@@ -52,7 +53,7 @@ class DialogConstent extends React.Component {
                 } else {
                     constent = (
                         <div >
-                            {moment( (data.date), 'YYYYMMDD').format('')}
+                            {''}
                         </div>
                     )
                 }

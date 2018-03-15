@@ -8,7 +8,7 @@ const eventConstentList = {
     ],
     '預約住院':[
         { label: '姓名', column: 'patName' },
-        { label: '預訂入住時間', column: 'date' },
+        { label: '入住時間', column: 'date' },
         { label: '醫師', column: 'docs' },
         // { label: '診斷', column: 'diagnosis' },
         { label: '住院原因', column: 'reasons' }

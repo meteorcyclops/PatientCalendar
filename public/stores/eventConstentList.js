@@ -27,7 +27,7 @@ const eventConstentList = {
     ],
     '預約排檢':[
         { label: '姓名', column: 'patName' },
-        { label: '預訂檢查時間', column: 'date' },
+        { label: '預訂時間', column: 'date' },
         { label: '預約醫師', column: 'requestUser.name' },
         { label: '檢查項目', column: 'EXAMCNAME' }
     ],

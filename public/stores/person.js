@@ -68,7 +68,7 @@ class Person {
         headers.append("Content-Type", "application/json")
         headers.append("Accept", "application/json")
         
-        const uri = `https://ehis-uat.kfsyscc.org/ord-graph`
+        const uri = `https://ehis.kfsyscc.org/ord-graph`
         
         fetch(uri, {
             method: 'POST',

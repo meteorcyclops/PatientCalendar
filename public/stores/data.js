@@ -53,7 +53,7 @@ class DataStore {
     getReservations = (queryItem)=> {
         this.getReservationsLoading = true
         fetch( 
-            'https://ehis-uat.kfsyscc.org/service', //'https://ehis.kfsyscc.org/service'
+            'https://ehis.kfsyscc.org/service', //'https://ehis.kfsyscc.org/service'
             {
                 method: 'POST',
                 headers: new Headers({ 

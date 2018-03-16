@@ -33,7 +33,7 @@ html, body, #app, .home{
     font-size: 20px;
     font-family: 微軟正黑體;
     padding: 8px 0px;
-    background: #005b93ad;
+    background: rgba(0, 91, 147, 0.7);
     width: 85%;
     cursor: pointer;
 }
@@ -48,11 +48,11 @@ html, body, #app, .home{
 
 .homeTitle:before {
     top: 0px;
-    background: linear-gradient(to top right, #005b93ad 50%, transparent 51%);
+    background: linear-gradient(to top right, rgba(0, 91, 147, 0.7) 50%, transparent 51%);
 }
 .homeTitle:after {
     bottom: 0px;
-    background: linear-gradient(to bottom right, #005b93ad 50%, transparent 51%);
+    background: linear-gradient(to bottom right, rgba(0, 91, 147, 0.7) 50%, transparent 51%);
 }
 
 .homeActionPlane{

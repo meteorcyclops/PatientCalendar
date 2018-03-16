@@ -58,15 +58,13 @@
     bottom: 25%;
     border: 1px solid white;
     border-radius: 10px;
-
-}
-
-.entryInputConfirmBut{
-    color: white;
-    background: none;
-    border: none;
+    cursor: pointer;
     width: 60px;
     height: 35px;
-    cursor: pointer;
-    
+    user-select: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
 }

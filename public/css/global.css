@@ -35,6 +35,7 @@ html, body, #app, .home{
     padding: 8px 0px;
     background: #005b93ad;
     width: 85%;
+    cursor: pointer;
 }
 
 .homeTitle:after, .homeTitle:before {

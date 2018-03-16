@@ -15,7 +15,7 @@ class DataStore {
     @observable reservationData = []
     @observable reservationEvents = []
     @observable reservationCounter = false
-    @observable getReservationsReady = true
+    @observable getReservationsLoading = false
 
     @observable userType = 'patient' // patient, doctor
     @observable nowDate = moment().toDate()
@@ -51,7 +51,7 @@ class DataStore {
 
     @action
     getReservations = (queryItem)=> {
-        this.getReservationsReady = false
+        this.getReservationsLoading = true
         fetch( 
             'https://ehis-uat.kfsyscc.org/service', //'https://ehis.kfsyscc.org/service'
             {
@@ -82,7 +82,7 @@ class DataStore {
                 this.reservationEvents  = pocessingData.data
                 this.reservationCounter = pocessingData.counter
             }
-            this.getReservationsReady = true
+            this.getReservationsLoading = false
         } )
 
     }

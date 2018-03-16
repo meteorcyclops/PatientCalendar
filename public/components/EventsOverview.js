@@ -22,19 +22,21 @@ class EventsOverview extends React.Component {
 
         _.forEach( dataTypeList, (eachData, key)=>{
             if (conterObject.hasOwnProperty(eachData.value) ) {
-                const comp = (
-                    <span className = 'events_overview_stamp' key={'overview' + eachData.value} >
-                        <EventIcons 
-                            iconType={eachData.title} 
-                            color={eachData.color} 
-                            size="18px" 
-                        />
-                        <span style={{marginLeft:'4px', fontSize:'#343331'}}> 
-                            {conterObject[eachData.value]} 
-                        </span> 
-                    </span>
-                )
-                consentArray.push(comp)
+                if (conterObject[eachData.value] > 0){
+                    const comp = (
+                        <span className = 'events_overview_stamp' key={'overview' + eachData.value} >
+                            <EventIcons 
+                                iconType={eachData.title} 
+                                color={eachData.color} 
+                                size="18px" 
+                            />
+                            <span style={{marginLeft:'4px', fontSize:'#343331'}}> 
+                                {conterObject[eachData.value]} 
+                            </span> 
+                        </span>
+                    )
+                    consentArray.push(comp)
+                }
             }
         } )
 

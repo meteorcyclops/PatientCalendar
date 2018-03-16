@@ -148,6 +148,7 @@ class TitleToolBar extends React.Component {
                 font-size: 20px;
                 color: white;
                 margin: 0px 2px;
+                cursor: pointer;
                 &:active {
                     background: #3174ad;
                 }
@@ -170,6 +171,7 @@ class TitleToolBar extends React.Component {
             `,
             viewDivStamp:styled.div`
                 padding: 2px 6px;
+                cursor: pointer;
             `,
             modeControl:styled.div`
                 position: absolute;
@@ -180,6 +182,7 @@ class TitleToolBar extends React.Component {
                 font-size: 25px;
                 margin: 2px;
                 color: ${eventMode?'#ff2805':'#ffffff80'};
+                cursor: pointer;
             `
         })
     }

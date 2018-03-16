@@ -10,7 +10,7 @@ class EntryInput extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            inputType: 'chartno'
+            inputType: 'patid'
         }
         this.changeInputType = this.changeInputType.bind(this)
         this.handleInput = this.handleInput.bind(this)
@@ -83,13 +83,8 @@ class EntryInput extends React.Component {
                         onKeyDown = {this.keySend}
                     />
                 </div>
-                <div className = 'entryInputConfirmButDiv'>
-                    <button 
-                        className = 'entryInputConfirmBut'
-                        onClick = {this.sendInput}
-                    >
-                        確認
-                    </button>
+                <div className = 'entryInputConfirmButDiv' onClick = {this.sendInput}>
+                    確認
                 </div>
             </div>
         );

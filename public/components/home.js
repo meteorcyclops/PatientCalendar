@@ -10,6 +10,7 @@ import EventsOverview from './EventsOverview'
 import Dialog from './elements/TDialog'
 import DialogConstent from './DialogConstent'
 import ModeInfoDisplay from './elements/ModeInfoDisplay'
+import Loading from './elements/Loading'
 import EntryInput from './EntryInput'
 
 import dataStore from '../stores/data'
@@ -108,6 +109,7 @@ class Home extends React.Component {
                     toggle={dataStore.modeInfoOpen} 
                     msg = {dataStore.modeInfoData[dataStore.eventMode?'open':'close']}
                 />
+                <Loading isLoading={dataStore.getReservationsLoading} />
             </div>
         )
     }

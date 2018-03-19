@@ -43,7 +43,6 @@ class DialogConstent extends React.Component {
                 })
             }
             else if (columnKey == 'date'){
-                console.log(data.time)
                 if (data.time){
                     constent = (
                         <div >
@@ -105,14 +104,14 @@ class DialogConstent extends React.Component {
 
     render() {
         const data = dataStore.pickEvent
-        if(!data){
+        if(!data.data){
             return <div></div>
         }
-        const Constent = this.makeConstent(data)
+        const Constent = this.makeConstent(data.data)
         return (
             <div style={{color:'white' }}>
                 <div style={{marginBottom:'20px'}}>
-                    {`${data.title} ${ moment( data.date, 'YYYYMMDD').format('YYYY-MM-DD')}`}
+                    {`${data.title} ${data.titleTail || ''} ${ moment( data.data.date, 'YYYYMMDD').format('YYYY-MM-DD')}`}
                 </div>
                 <div
                     style={{ 

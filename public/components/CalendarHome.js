@@ -71,10 +71,8 @@ class CalendarHome extends React.Component {
                 this.more = false
             }
         }
-        console.log('onSelectSlot', e)
     }
     onSelecting(e){
-        console.log('onSelecting', e)
     }
     // slotPropGetter(e){
     //     console.log('slotPropGetter', e)
@@ -82,9 +80,8 @@ class CalendarHome extends React.Component {
     // }
     
     onSelectEvent(e){
-        console.log('onSelectEvent', e)
         dataStore.setObs( 'nowDate', e.start )
-        dataStore.setObs( 'pickEvent', e.data )
+        dataStore.setObs( 'pickEvent', e )
         dataStore.setObs( 'infoOpen', true )
     }
 
@@ -96,7 +93,6 @@ class CalendarHome extends React.Component {
     // }
 
     onNavigate(e){
-        console.log(e)
     }
 
     moreDown(e){

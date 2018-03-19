@@ -63,9 +63,6 @@ class EntryInput extends React.Component {
             itemClassChartno += ' unActive'
         }
 
-        console.log(personData.msg)
-        console.log(personData.name)
-
         return (
             <div className = 'entryInput'>
             <div id = 'entryMsg'>{personData.msg}</div>

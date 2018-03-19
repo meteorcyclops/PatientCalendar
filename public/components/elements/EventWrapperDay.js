@@ -53,7 +53,6 @@ const makeDayDiv=(event)=>{
     const startStr = event.allDay?'':moment( event.start ).format('HH:mm')
 
     const data = event.data
-    console.log(event)
     switch(data.title){
         case '預約門診': 
             return `${startStr} ${data.title}(${data.DOC_NAME})${ data.MEMO? '-' + data.MEMO: '' }`

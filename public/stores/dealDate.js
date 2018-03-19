@@ -47,6 +47,11 @@ const makeEventList = (dataList) =>{
             event.title = '門診'
             event.type = 'opd'
             conterObj.opd += 1
+            //門診治療室戳記
+            if (eachData.optr){
+                event.optr = true
+                // event.titleTail = '( 門診治療室 )'
+            }
      
         } else if (eachData.title == '預約健檢'){
      

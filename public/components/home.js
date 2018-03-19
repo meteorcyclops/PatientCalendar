@@ -39,8 +39,6 @@ class Home extends React.Component {
         if (props.patid)   { queryItem.PAT_IDNO = props.patid }
         if (props.docno)   { queryItem.DOC_NO   = props.docno }
 
-        console.log(queryItem)
-
         dataStore.getReservations( queryItem )
     }
 

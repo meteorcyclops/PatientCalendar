@@ -5,8 +5,6 @@ import styled from 'styled-components'
 
 const EventWrapperHeader = (props)=>{
     
-    console.log(props)
-
     const EventDivStyle=styled.div`
         display: flex;
         position: relative;

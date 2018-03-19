@@ -47,7 +47,7 @@ class ModeInfoDisplay extends React.Component {
             pointer-events:none;
             ${  this.isFirst?'opacity: 0;':`
                 animation: .5s ${fadeOut} ease-out;
-                animation-delay: 3s;
+                animation-delay: 5s;
                 animation-fill-mode: forwards;
                 `
             }

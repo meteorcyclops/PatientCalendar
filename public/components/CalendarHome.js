@@ -80,7 +80,7 @@ class CalendarHome extends React.Component {
     //     console.log('slotPropGetter', e)
     //     return { className: 'eachSlotDay'}
     // }
-
+    
     onSelectEvent(e){
         console.log('onSelectEvent', e)
         dataStore.setObs( 'nowDate', e.start )

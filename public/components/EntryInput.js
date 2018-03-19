@@ -44,7 +44,6 @@ class EntryInput extends React.Component {
     sendInput(){
         if( this.inputValue!= ''){
             dataStore.changeEntry(this.state.inputType, this.inputValue)
-            dataStore.setObs('entryOpen', false)
             personData.getPerson(this.state.inputType, this.inputValue)
         }
     }
@@ -64,8 +63,12 @@ class EntryInput extends React.Component {
             itemClassChartno += ' unActive'
         }
 
+        console.log(personData.msg)
+        console.log(personData.name)
+
         return (
             <div className = 'entryInput'>
+            <div id = 'entryMsg'>{personData.msg}</div>
                 <div className = 'entryGroupItem'>
                     <div className = {entryInfoTypeClass}>
                         <div className = {itemClassPatid} onClick={this.changeInputType}>

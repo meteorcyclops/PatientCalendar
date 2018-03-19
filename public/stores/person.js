@@ -5,21 +5,24 @@ import moment from 'moment'
 
 import { makeEventList } from './dealDate'
 import TDialog from '../components/elements/TDialog';
+import dataStore from './data'
 
 class Person {
 
     @observable id= ''
     @observable name= '???'
-    @observable ready= ''
+    @observable ready= false
+    @observable msg= ''
 
     @action
-    setObs( id, name ){
-        this.id = id
-        this.name = name
+    setObs( key, value ){
+        this[key] = value
     }
 
+
     getPerson(type, id) {
-        this.ready = false
+        this.setObs('ready', false)
+        this.setObs('msg', '')
 
         let data = {}
 
@@ -77,7 +80,13 @@ class Person {
         })
         .then((response) => { return response.json() })
         .then( (backdata)=>{
-            this.setObs(id, backdata.data.general.patientInfo.NAME)
+            this.setObs('id', id)
+            this.setObs('name' , backdata.data.general.patientInfo.NAME)
+            this.setObs('ready', true)
+            dataStore.setObs('entryOpen', false)
+        } )
+        .catch( ()=>{
+            this.setObs('msg', '抓取資料錯誤\n請確認有此病人，確定有後聯絡資訊部')
         } )
 
     }

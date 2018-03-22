@@ -74,6 +74,12 @@ class TitleToolBar extends React.Component {
         const ViewDivStamp = comps.viewDivStamp
         const ModeControl  = comps.modeControl
 
+        // <ViewDivStamp
+        //     style={{color: view=='week'?'#4079ff':null}}
+        //     onClick={this.view.bind(null, 'week')}
+        // >
+        //     W
+        // </ViewDivStamp>
 
         return (
             <TitleBody>
@@ -97,16 +103,16 @@ class TitleToolBar extends React.Component {
                         M
                     </ViewDivStamp>
                     <ViewDivStamp
-                        style={{color: view=='week'?'#4079ff':null}}
-                        onClick={this.view.bind(null, 'week')}
-                    >
-                        W
-                    </ViewDivStamp>
-                    <ViewDivStamp
                         style={{color: view=='day'?'#4079ff':null}}
                         onClick={this.view.bind(null, 'day')}
                     >
                         D
+                    </ViewDivStamp>
+                    <ViewDivStamp
+                        style={{color: view=='agenda'?'#4079ff':null}}
+                        onClick={this.view.bind(null, 'agenda')}
+                    >
+                        A
                     </ViewDivStamp>
                 </ViewDivGroup>
                 <ModeControl 

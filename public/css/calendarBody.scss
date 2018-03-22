@@ -92,3 +92,7 @@ $fontColor: rgb(25, 40, 49);
 .rbc-timeslot-group{
     flex: auto!important;
 }
+
+.rbc-day-slot .rbc-event{
+    position: relative;
+}

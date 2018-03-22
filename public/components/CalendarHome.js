@@ -49,7 +49,8 @@ class CalendarHome extends React.Component {
         }
 
         this.formats = {
-            dayFormat:  'M/DD dd'
+            dayFormat:  'M/DD dd',
+            agendaDateFormat:  'YYYY M/DD dd'
         }
 
         this.more=false
@@ -74,10 +75,10 @@ class CalendarHome extends React.Component {
     }
     onSelecting(e){
     }
-    // slotPropGetter(e){
-    //     console.log('slotPropGetter', e)
-    //     return { className: 'eachSlotDay'}
-    // }
+    slotPropGetter(e){
+        console.log('slotPropGetter', e)
+        return { className: 'eachSlotDay'}
+    }
     
     onSelectEvent(e){
         dataStore.setObs( 'nowDate', e.start )
@@ -85,12 +86,12 @@ class CalendarHome extends React.Component {
         dataStore.setObs( 'infoOpen', true )
     }
 
-    // eventPropGetter( event, start, end, isSelected){
-    //     console.log('eventPropGetter', event)
-    //     return {
-    //         className: 'GG', 
-    //     }
-    // }
+    eventPropGetter( event, start, end, isSelected){
+        console.log('eventPropGetter', event)
+        return {
+            className: 'GG', 
+        }
+    }
 
     onNavigate(e){
     }
@@ -122,13 +123,13 @@ class CalendarHome extends React.Component {
                 // onSelecting = {this.onSelecting.bind(this)}
                 onSelectSlot = {this.onSelectSlot.bind(this)}
                 onSelectEvent = {this.onSelectEvent.bind(this)}
-                // eventPropGetter = {this.eventPropGetter.bind(this)}
-                // slotPropGetter = {this.slotPropGetter.bind(this)}
+                eventPropGetter = {this.eventPropGetter.bind(this)}
+                slotPropGetter = {this.slotPropGetter.bind(this)}
                 toolbar = {true}
                 components = {this.components}
                 messages = {this.messages}
-                timeslots={4}
-                step = {15}
+                timeslots={1}
+                step = {720}
                 onNavigate = {this.onNavigate.bind(this)}
                 longPressThreshold = {1}
                 cancelable={true}

@@ -25,6 +25,7 @@ class Home extends React.Component {
         super(props);
         this.state = {  }
         
+        personData.getUser()
         this.chartno = this.props.chartno
         this.docno   = this.props.docno
         this.patid   = this.props.patid
@@ -53,9 +54,13 @@ class Home extends React.Component {
                 <div className = 'homeBackground' />
                 <div 
                     className='homeTitle'
-                    onClick={()=>dataStore.setObs('entryOpen', true)}
+                    onClick={()=>{
+                        if (personData.chartnoCanChange){
+                            dataStore.setObs('entryOpen', true)
+                        }
+                    }}
                 >
-                    <CalendarTitle id= {personData.id}  name= {personData.name} />
+                    <CalendarTitle id={personData.id}  name= {personData.name} />
                 </div>
                 <div className='homeActionPlane'>
                     {
@@ -98,7 +103,7 @@ class Home extends React.Component {
                         maxWidth:'400px', 
                         maxHeight:'300px' 
                     }}
-                    open={dataStore.entryOpen}
+                    open={(dataStore.entryOpen && personData.chartnoCanChange)}
                     onDialogClose={()=>{dataStore.setObs('entryOpen', false)}}
                 >
                     <EntryInput />

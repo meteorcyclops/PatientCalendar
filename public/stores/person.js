@@ -13,10 +13,29 @@ class Person {
     @observable name= '???'
     @observable ready= false
     @observable msg= ''
+    @observable empId= ''
+    @observable empName= ''
+    @observable empAccount= ''
+    @observable chartnoCanChange = false
 
     @action
     setObs( key, value ){
         this[key] = value
+    }
+
+    getUser(){
+        fetch('https://emr.kfsyscc.org/userinfo', { credentials:'include' })
+            .then( (x)=>x.json() )
+            .then( action(
+                (data)=>{
+                    this.empId = data.user.USER_ID 
+                    this.empAccount = data.user.AD_ACCOUNT
+                    this.empName = data.user.NAME_CH
+                    if ( data.user.ROLE.top === 'user' ){
+                        this.chartnoCanChange = true
+                    }
+                }
+            ))
     }
 
 

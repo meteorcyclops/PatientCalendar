@@ -75,9 +75,13 @@ class CalendarHome extends React.Component {
     }
     onSelecting(e){
     }
+
     slotPropGetter(e){
+
         console.log('slotPropGetter', e)
+
         return { className: 'eachSlotDay'}
+        
     }
     
     onSelectEvent(e){
@@ -87,7 +91,6 @@ class CalendarHome extends React.Component {
     }
 
     eventPropGetter( event, start, end, isSelected){
-        console.log('eventPropGetter', event)
         return {
             className: 'GG', 
         }

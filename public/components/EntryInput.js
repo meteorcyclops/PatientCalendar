@@ -43,7 +43,9 @@ class EntryInput extends React.Component {
 
     sendInput(){
         if( this.inputValue!= ''){
+            // 讀預約資料
             dataStore.changeEntry(this.state.inputType, this.inputValue)
+            // 讀病人資料
             personData.getPerson(this.state.inputType, this.inputValue)
         }
     }

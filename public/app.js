@@ -25,7 +25,7 @@ class RenderForcer extends React.Component {
             // 讀預約資料
             dataStore.changeEntry('chartno', otherEntryChartno)
             // 讀病人資料
-            personData.getPerson('chartno', otherEntryChartno)
+            person.getPerson('chartno', otherEntryChartno)
         }
         // ---
 

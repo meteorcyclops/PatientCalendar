@@ -4,9 +4,12 @@ import _ from 'lodash'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faAngleRight, faAngleLeft, faBriefcase } from '@fortawesome/fontawesome-free-solid' 
-import { faCalendarCheck } from '@fortawesome/fontawesome-free-regular' 
+import { library }         from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleRight, faAngleLeft, faBriefcase } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarCheck } from '@fortawesome/free-regular-svg-icons'
+
+
 import { navigate } from 'react-big-calendar/lib/utils/constants'
 
 import dataStore from '../stores/data'
@@ -20,6 +23,10 @@ class TitleToolBar extends React.Component {
         }
         this.handleClick = this.handleClick.bind(this)
         dataStore.navagatorFun = this.view.bind(null, 'day')
+        library.add(faAngleRight)
+        library.add(faAngleLeft)
+        library.add(faBriefcase)
+        library.add(faCalendarCheck)
     }
 
     handleClick() {
@@ -85,13 +92,13 @@ class TitleToolBar extends React.Component {
             <TitleBody>
                 <WalkDivGroup>
                     <WalkDiv onClick={this.navigate('pre')} >
-                        <FontAwesomeIcon icon={ faAngleLeft }/>
+                        <FontAwesomeIcon icon='angle-left' />
                     </WalkDiv>
                     <WalkDiv onClick={this.navigate('today')} >
-                        <FontAwesomeIcon icon={ faCalendarCheck }/>
+                        <FontAwesomeIcon icon={["far",'calendar-check']} />
                     </WalkDiv>
                     <WalkDiv onClick={this.navigate('next')} >
-                        <FontAwesomeIcon icon={ faAngleRight }/>
+                        <FontAwesomeIcon icon="angle-right" />
                     </WalkDiv>
                 </WalkDivGroup>
                 <TitleDiv> {label} </TitleDiv>
@@ -121,7 +128,7 @@ class TitleToolBar extends React.Component {
                         dataStore.setObs('modeInfoOpen', !dataStore.modeInfoOpen)
                     }}
                 >
-                    <FontAwesomeIcon icon={ faBriefcase }/>
+                    <FontAwesomeIcon icon={["fas",'briefcase']} />
                 </ModeControl>
             </TitleBody>
         )

@@ -36,11 +36,14 @@ class Home extends React.Component {
         
         queryItem.minDate = moment().format('YYYYMMDD')
         
-        if (props.chartno) { queryItem.CHART_NO = props.chartno }
-        if (props.patid)   { queryItem.PAT_IDNO = props.patid }
-        if (props.docno)   { queryItem.DOC_NO   = props.docno }
+        let hasQuery = false
+        if (props.chartno) { queryItem.CHART_NO = props.chartno; hasQuery = true }
+        if (props.patid)   { queryItem.PAT_IDNO = props.patid; hasQuery = true }
+        if (props.docno)   { queryItem.DOC_NO   = props.docno; hasQuery = true }
 
-        dataStore.getReservations( queryItem )
+        if (hasQuery){
+            dataStore.getReservations( queryItem )
+        }
     }
 
     render() {

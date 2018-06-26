@@ -10,17 +10,13 @@ import person from './stores/person'
 
 class RenderForcer extends React.Component {
 
-
-
-    render() {
-
-        let docno = null
-        let chartno = null
-        let patid = null
-
+    componentDidMount(){
         // 讀取是否有從別的入口來的資訊
-        const otherEntryChartno = Cookies.get(`chartnoForPatientCalendar`) || ''
+        let otherEntryChartno = Cookies.get(`chartnoForPatientCalendar`) || ''
         Cookies.remove(`chartnoForPatientCalendar`)
+
+        otherEntryChartno = '05131925'
+
         if (otherEntryChartno){
             // 讀預約資料
             dataStore.changeEntry('chartno', otherEntryChartno)
@@ -28,11 +24,20 @@ class RenderForcer extends React.Component {
             person.getPerson('chartno', otherEntryChartno)
         }
         // ---
+    }
+
+    render() {
+
+        let docno = null
+        let chartno = null
+        let patid = null
+
+        console.log(dataStore.chartno)
 
         if (person.ready){
-            docno = dataStore.docno
+            docno   = dataStore.docno
             chartno = dataStore.chartno
-            patid = dataStore.patid
+            patid   = dataStore.patid
         }
 
         return (

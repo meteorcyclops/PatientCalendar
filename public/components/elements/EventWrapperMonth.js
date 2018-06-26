@@ -10,24 +10,6 @@ const EventWrapperMonth = (props)=>{
     const thisType = eventTypeList.filter((x)=>(x.value == type)) 
     const GBcolor = thisType.length>0?thisType[0].color: 'white'
 
-    const EventDivStyle=styled.div`
-        display: flex;
-        position: relative;
-        flex-direction: row;
-        align-items: center;
-        /* justify-content: center; */
-        font-family: 微軟正黑體;
-        font-size: 14px;
-        /* background: rgb(243, 239, 220); */
-        /* border-radius: 5px; */
-        color: #17171b;
-        overflow: hidden;
-        margin-left: 2px;
-        padding-left: 5px;
-        height:20px;
-        pointer-events: none;
-    `
-
     const TitleLabel=styled.div`
         position: absolute;
         left: 0px; bottom: 0px;
@@ -38,13 +20,74 @@ const EventWrapperMonth = (props)=>{
 
     let constent = null
 
+    if(props.event.data){
+
+        const eventData = props.event.data
+        const event = props.event
+
+        switch(props.event.data.title){
+            case '預約門診': 
+                constent = (
+                    <React.Fragment>
+                        <div> { event.title } </div>
+                        <div className='smallHide'> { ` (${eventData.HDEPT_CODE})` } </div>
+                    </React.Fragment>
+                )
+                break
+            case '預約住院': 
+                constent = (
+                    <React.Fragment>
+                        <div> { event.title } </div>
+                        <div className='smallHide'> </div>
+                    </React.Fragment>
+                )
+                break
+            case '預約手術': 
+                constent = (
+                    <React.Fragment>
+                        <div> { event.title } </div>
+                    </React.Fragment>
+                )
+                break
+            case '預約排檢': 
+                constent = (
+                    <React.Fragment>
+                        <div className='bigHide'> { event.title } </div>
+                        <div className='smallHide'>{ eventData.EXAMCNAME }</div>
+                    </React.Fragment>
+                )
+                break
+            case '預約排檢(內視鏡)': 
+                constent = (
+                    <React.Fragment>
+                        <div className='bigHide'> { event.title } </div>
+                        <div className='smallHide'>{ eventData.ITM_NAME }</div>
+                    </React.Fragment>
+                )
+                break
+            case '預約健檢': 
+                constent = (
+                    <React.Fragment>
+                        <div> { event.title } </div>
+                    </React.Fragment>
+                )
+                break
+            case '預約放腫': 
+                constent = (
+                    <React.Fragment>
+                        <div className='bigHide'> { event.title } </div>
+                        <div className='smallHide'>{`${eventData.ActivityNote}, ${eventData.ShortComment}`}</div>
+                    </React.Fragment>
+                )
+                break
+        }
+    }
+
     return(
-        <EventDivStyle>
+        <div className='EventDivStyle'>
             <TitleLabel />
-            <span>
-                {props.event.title}
-            </span>
-        </EventDivStyle>
+            {constent}
+        </div>
     )
 
 }

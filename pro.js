@@ -1,21 +1,26 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const fs = require('fs-extra')
 
 
-console.log('打包pro'); 
+console.log('打包pro');
 
-fs.removeSync('dist/public') 
-fs.mkdir('dist/public', ()=>{})
-fs.mkdir('dist/public/source', ()=>{})
+fs.removeSync('dist/public')
+fs.mkdir('dist/public', () => { })
+fs.mkdir('dist/public/source', () => { })
 
 module.exports = {
-    entry: './index.js',
+    
+    entry: {
+        main: ['babel-polyfill', './index.js'],
+        // vendor: [ 'react', 'react-dom', 'mobx', 'mobx-react', 'material-ui', 'styled-components' ]
+    },
     output: {
+        path: resolve( __dirname, 'dist/public' ),
         filename: 'bundle.js',
-        path: resolve(__dirname, 'dist/public'),
+        chunkFilename: "[name].chunk.js"
     },
     context: resolve(__dirname, 'public'),
     module: {
@@ -27,19 +32,30 @@ module.exports = {
                 ],
                 exclude: /node_modules/
             },
-            {
-                test: /\.scss$/, 
-                loader: ExtractTextPlugin.extract({        
-                    fallback: 'style-loader',
-                    use: 'css-loader!postcss-loader!sass-loader', 
-                })
+            {      
+                test: /^((?!\.global).)*\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "postcss-loader"
+                ]
             },
             {
-                test: /\.css$/,
-                loaders: ExtractTextPlugin.extract({        
-                    fallback: 'style-loader',
-                    use: 'css-loader!postcss-loader', 
-                })
+                test: /\.scss$/, //-- 可以直接用scss... 但不知道跟 css 另外打包的 plugin 會不會衝到，要再研究，先不用
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "postcss-loader",
+                    "sass-loader"
+                ]
+            },
+            {
+                test: /\.global\.css$/,  // anything with .global will not go through css modules loader
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "postcss-loader"
+                ]
             },
             {
                 test: /\.(png|gif|jpg|svg|eot|woff(2)?|ttf)?$/,
@@ -56,31 +72,38 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            chunks: "async",
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
+        }
+    },
     plugins: [
-		new webpack.optimize.UglifyJsPlugin({       // 把 打包檔 minify 的plugin
-            beautify: false,
-            mangle: {
-                    screw_ie8: true,
-                    keep_fnames: true
-            },
-            compress: {
-                    screw_ie8: true,
-                    warnings: false
-            },
-            comments: false
-		}),
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify('production')
-		}),
-		new ExtractTextPlugin("styles.css"),
+        new MiniCssExtractPlugin({
+            filename: "styles.css",
+            chunkFilename: "chunks.css"
+        }),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/,
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions: { discardComments: {removeAll: true } },
+            cssProcessor:require('cssnano')({
+                reduceIdents: false
+            }),
+            cssProcessorOptions: { discardComments: { removeAll: true } },
             canPrint: true
         }),
-		new webpack.NamedModulesPlugin()
-	]
+        new webpack.NamedModulesPlugin()
+    ]
 }
 
 

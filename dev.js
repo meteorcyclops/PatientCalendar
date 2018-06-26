@@ -1,18 +1,21 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const fs = require('fs-extra');
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 devPack = env => {
-    console.log('打包dev')
+
+    console.log('打包dev');
+
     fs.removeSync('dev/public')
     fs.mkdir('dev/public', () => { })
     fs.mkdir('dev/public/source', () => { })
-    
+
     const port = env.port
 
     return {
         entry: [
+            'babel-polyfill',
             'react-hot-loader/patch',
             `webpack-dev-server/client?http://0.0.0.0:${port}`,
             'webpack/hot/only-dev-server', //-- react 的 hotreload
@@ -43,23 +46,26 @@ devPack = env => {
                 {
                     test: /\.(js|jsx)$/,
                     use: [
-                        'babel-loader',
+                        'babel-loader'
                     ],
                     exclude: /node_modules/
                 },
                 {
                     test: /\.css$/,
-                    loader: ExtractTextPlugin.extract({         // 把 css 另外打包的 plugin
-                        fallback: 'style-loader',
-                        use: 'css-loader!postcss-loader',
-                    })
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        "css-loader",
+                        "postcss-loader"
+                    ]
                 },
                 {
                     test: /\.scss$/,
-                    loader: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: 'css-loader!postcss-loader!sass-loader',
-                    })
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        "css-loader",
+                        "postcss-loader",
+                        "sass-loader"
+                    ]
                 },
                 {
                     test: /\.(png|gif|jpg|svg|eot|woff(2)?|ttf)?$/,
@@ -79,12 +85,10 @@ devPack = env => {
         plugins: [
             new webpack.HotModuleReplacementPlugin(), //-- react 的 hotreload plugin
             new webpack.NamedModulesPlugin(),
-            new ExtractTextPlugin("styles.css"),
-            new webpack.DefinePlugin(
-                {
-                    'process.env': { 'NODE_ENV': JSON.stringify('develope') }
-                }
-            ),
+            new MiniCssExtractPlugin({
+                filename: "styles.css",
+                chunkFilename: "[id].css"
+            })
         ]
     }
 }

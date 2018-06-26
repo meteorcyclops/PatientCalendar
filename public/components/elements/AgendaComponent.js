@@ -1,7 +1,10 @@
-import React from 'react' 
+import React  from 'react' 
 import {observer} from 'mobx-react' 
-import mobx from 'mobx' 
-import _ from 'lodash' 
+import mobx   from 'mobx' 
+import _      from 'lodash' 
+import moment from 'moment'
+
+import '../../css/AgendaComponent.css'
 
 class AgendaComponent extends React.Component {
     constructor(props) {
@@ -9,39 +12,65 @@ class AgendaComponent extends React.Component {
         this.state = {
             
         }
-        this.handleClick = this.handleClick.bind(this)
     }
 
-    static title (data){
-        console.log(data)
-        return '1234'
-    }
-
-    static navigate(data){
-        console.log(data)
-        return new Date()
-    }
-
-    handleClick() {
+    handleClick = () => {
         console.log(this); // React Component instance
     }
 
-    render() {
-        console.log(this.props)
-        return (
-            <div className = 'AgendaComponent'>1234
+    displayData = ( data ) => {
+        
+        const eventData = _.map( data, ( eachData, idx )=>{
 
-            <style jsx>{`
-                .AgendaComponent{
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(254, 254, 254, 0.7);
-                    border-radius: 10px;
-                }
-            `}
-            </style>
+            const startDay  = moment( eachData.start ).format('YYYY/MM/DD')
+            const startTime = eachData.allDay? '' : moment( eachData.start ).format('HH:mm')
+            
+            const eventData = eachData.data
+
+            let body = ''
+
+            switch(eventData.title){
+                case '預約門診': 
+                    body = `${startDay} ${startTime} ${eventData.title} ${eventData.HDEPT_CODE} ${eventData.DOC_NAME} ${ eventData.MEMO? '-' + eventData.MEMO: '' }`
+                    break
+                case '預約住院': 
+                    body = `${startDay} ${startTime} ${eventData.title}`
+                    break
+                case '預約手術': 
+                    body = `${startDay} ${startTime} ${eventData.beforeOprs.length>0?eventData.beforeOprs[0]:''}`
+                    break
+                case '預約排檢': 
+                    body = `${startDay} ${startTime} ${eventData.EXAMCNAME}`
+                    break
+                case '預約排檢(內視鏡)': 
+                    body = `${startDay} ${startTime} ${eventData.ITM_NAME}`
+                    break
+                case '預約健檢': 
+                    body = `${startDay} ${startTime} ${eventData.title}`
+                    break
+                case '預約放腫': 
+                    body = `${startDay} ${startTime} ${eventData.ActivityNote}, ${eventData.ShortComment}`
+                    break
+            }
+
+            return (
+                <div className='AgendaComponentEvent' key ={idx}>
+                    {body}
+                </div>
+            )
+        } )
+
+        return eventData
+    }
+
+    render() {
+        const content = this.displayData( this.props.events )
+
+        return (
+            <div className = 'AgendaComponent'>
+                {content}
             </div>
-        );
+        )
     }
 }
 

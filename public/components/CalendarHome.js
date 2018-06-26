@@ -11,6 +11,7 @@ import TitleToolBar from './TitleToolBar'
 import EventWrapperMonth from './elements/EventWrapperMonth'
 import EventWrapperDay from './elements/EventWrapperDay'
 import EventWrapperHeader from './elements/EventWrapperHeader'
+import AgendaComponent from './elements/AgendaComponent'
 
 import dataStore from '../stores/data'
 
@@ -62,7 +63,6 @@ class CalendarHome extends React.Component {
         }
     }
 
-    
     onSelectSlot(e){
         if (e.slots.length>0){
             const pickDay = e.slots[0]
@@ -73,6 +73,7 @@ class CalendarHome extends React.Component {
             }
         }
     }
+
     onSelecting(e){
     }
 
@@ -137,6 +138,11 @@ class CalendarHome extends React.Component {
                 longPressThreshold = {1}
                 cancelable={true}
                 view = {view}
+                views={{
+                    month: true,
+                    day:   true,
+                    agenda: AgendaComponent,
+                }}
                 onView = {()=>{}}
                 formats={this.formats}
                 // selectable={true}

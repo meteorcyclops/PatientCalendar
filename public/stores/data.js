@@ -18,11 +18,11 @@ class DataStore {
     @observable getReservationsLoading = false
 
     @observable userType = 'patient' // patient, doctor
-    @observable nowDate = moment().toDate()
-    @observable nowView = 'month'
+    @observable nowDate  = moment().toDate()
+    @observable nowView  = 'month' // month, agenda
 
     @observable pickEvent = null
-    @observable infoOpen = false
+    @observable infoOpen  = false
     @observable entryOpen = true
     @observable modeInfoOpen = false
     @observable eventMode = false
@@ -77,7 +77,7 @@ class DataStore {
                 const data = backdata.data
 
                 this.reservationData = data
-                
+
                 const pocessingData = makeEventList(data)
                 this.reservationEvents  = pocessingData.data
                 this.reservationCounter = pocessingData.counter

@@ -54,7 +54,7 @@ $fontColor: rgb(25, 40, 49);
 }
 
 .rbc-event-label{
-    display: none;
+    display: none!important;
 }
 
 .rbc-event.rbc-selected {

@@ -4,7 +4,6 @@ import _ from 'lodash'
 import moment from 'moment'
 
 import { makeEventList } from './dealDate'
-import TDialog from '../components/elements/TDialog';
 
 class DataStore {
 

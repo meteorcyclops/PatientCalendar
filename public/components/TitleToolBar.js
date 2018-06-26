@@ -143,6 +143,7 @@ class TitleToolBar extends React.Component {
                 width: 100%;
                 display: flex; flex-direction: row;
                 justify-content: center;
+                z-index:1;
             `,
             walkDivGroup:styled.div`
                 position: absolute;

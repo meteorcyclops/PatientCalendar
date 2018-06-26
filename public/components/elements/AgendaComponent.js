@@ -4,6 +4,8 @@ import mobx   from 'mobx'
 import _      from 'lodash' 
 import moment from 'moment'
 
+import dataStore from '../../stores/data'
+
 import '../../css/AgendaComponent.css'
 
 class AgendaComponent extends React.Component {
@@ -14,8 +16,9 @@ class AgendaComponent extends React.Component {
         }
     }
 
-    handleClick = () => {
-        console.log(this); // React Component instance
+    handleClick = (data) => {
+        dataStore.setObs( 'pickEvent', data )
+        dataStore.setObs( 'infoOpen', true )
     }
 
     displayData = ( data ) => {
@@ -54,7 +57,7 @@ class AgendaComponent extends React.Component {
             }
 
             return (
-                <div className='AgendaComponentEvent' key ={idx}>
+                <div className='AgendaComponentEvent' key ={idx} onClick = {()=>this.handleClick(eachData)}>
                     {body}
                 </div>
             )

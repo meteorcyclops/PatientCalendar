@@ -15,8 +15,6 @@ class RenderForcer extends React.Component {
         let otherEntryChartno = Cookies.get(`chartnoForPatientCalendar`) || ''
         Cookies.remove(`chartnoForPatientCalendar`)
 
-        otherEntryChartno = '05131925'
-
         if (otherEntryChartno){
             // 讀預約資料
             dataStore.changeEntry('chartno', otherEntryChartno)

@@ -5,10 +5,12 @@
     border-radius: 10px;
     padding: 10px;
     border: 2px #2575a8 solid;
+    z-index: 2;
 }
 
 .AgendaComponentEvent{
     color: rgb(36, 54, 87);
     font-size: 15px;
     margin: 5px 0px;
+    cursor: pointer;
 }

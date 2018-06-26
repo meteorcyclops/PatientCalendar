@@ -1,6 +1,6 @@
 import React from 'react' 
 import {observer} from 'mobx-react' 
-import mobx from 'mobx' 
+import {toJS} from 'mobx' 
 import _ from 'lodash' 
 import moment from 'moment'
 
@@ -30,7 +30,7 @@ class DialogConstent extends React.Component {
             const columnKey = item.column
             let constent
 
-            if ( Array.isArray( mobx.toJS(data[columnKey]) ) ){
+            if ( Array.isArray( toJS(data[columnKey]) ) ){
                 constent = _.map(data[columnKey], (each, idx)=>{
                     // 因醫師的陣列內容是物件，只要是物件都抓 key： name
                     let value = _.isObject( each )? each.name : each 

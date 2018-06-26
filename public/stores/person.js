@@ -34,6 +34,20 @@ class Person {
                     if ( data.user.ROLE.top === 'user' ){
                         this.chartnoCanChange = true
                     }
+
+                    const logData = {
+                        "api"          : "writeLogToWeblog",
+                        "user"         : this.empId,
+                        "type"         : "topPatientCalendar"
+                    }
+                    fetch(
+                        'https://ehis.kfsyscc.org/service', 
+                        { 
+                            credentials:'include',
+                            body: JSON.stringify(logData),
+                            method: 'POST'
+                        }
+                    )
                 }
             ))
     }

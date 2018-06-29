@@ -7,11 +7,11 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import '../css/global.css'
 import '../css/calendarBody.scss'
 
-import TitleToolBar from './TitleToolBar'
-import EventWrapperMonth from './elements/EventWrapperMonth'
-import EventWrapperDay from './elements/EventWrapperDay'
+import TitleToolBar       from './TitleToolBar'
+import EventWrapperMonth  from './elements/EventWrapperMonth'
+import EventWrapperDay    from './elements/EventWrapperDay'
 import EventWrapperHeader from './elements/EventWrapperHeader'
-import AgendaComponent from './elements/AgendaComponent'
+import AgendaComponent    from './elements/AgendaComponent'
 
 import dataStore from '../stores/data'
 

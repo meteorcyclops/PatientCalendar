@@ -34,7 +34,6 @@ class T_Dialog extends React.Component {
             width: 70%; height: 70%;
             padding: 15px 25px 15px 25px;
             border-radius: 5px;
-            font-family: arial, 微軟正黑體;
             background: white;
             overflow-y: auto;
             margin: 0 auto;

@@ -11,7 +11,6 @@ const EventWrapperHeader = (props)=>{
         flex-direction: row;
         align-items: center;
         /* justify-content: center; */
-        font-family: 微軟正黑體;
         font-size: 14px;
         /* background: rgb(243, 239, 220); */
         /* border-radius: 5px; */

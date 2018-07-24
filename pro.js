@@ -11,7 +11,7 @@ fs.removeSync('dist/public')
 fs.mkdir('dist/public', () => { })
 fs.mkdir('dist/public/source', () => { })
 
-module.exports = {
+module.exports = env =>( {
     
     entry: {
         main: ['babel-polyfill', './index.js'],
@@ -107,7 +107,7 @@ module.exports = {
         }),
         new webpack.NamedModulesPlugin()
     ]
-}
+})
 
 
 

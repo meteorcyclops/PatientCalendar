@@ -4,7 +4,8 @@
   "main": "public/index.js",
   "scripts": {
     "start": "NODE_ENV=pp webpack-dev-server --mode development --hot --env.type=dev --env.port=9487 --env.publishType=top",
-    "build": "webpack --mode production --env.type=pro --env.publishType=top --progress --profile --colors"
+    "build": "webpack --mode production --env.type=pro --env.publishType=top --progress --profile --colors",
+    "buildPP": "webpack --mode production --env.type=pro --env.publishType=pp --progress --profile --colors"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",

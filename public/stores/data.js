@@ -50,9 +50,16 @@ class DataStore {
 
     @action
     getReservations = (queryItem)=> {
+        
         this.getReservationsLoading = true
+
+        const url = PRODUCTION_TYPE ==='pp'? 
+                      'https://patient.kfsyscc.org/secure_api_secret' 
+                    : 'https://ehis-uat.kfsyscc.org/service'
+
+
         fetch( 
-            'https://ehis-uat.kfsyscc.org/service', //'https://ehis.kfsyscc.org/service'
+            url, //'https://ehis.kfsyscc.org/service'
             {
                 method: 'POST',
                 headers: new Headers({ 

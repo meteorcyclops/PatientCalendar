@@ -90,6 +90,9 @@ module.exports = {
         }
     },
     plugins: [
+        new webpack.DefinePlugin({
+            PRODUCTION_TYPE: JSON.stringify( env.publishType ),
+        }),
         new MiniCssExtractPlugin({
             filename: "styles.css",
             chunkFilename: "chunks.css"

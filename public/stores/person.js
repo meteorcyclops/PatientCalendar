@@ -36,15 +36,15 @@ class Person {
                     }
 
                     const logData = {
-                        "api"          : "writeLogToWeblog",
-                        "user"         : this.empId,
-                        "type"         : "topPatientCalendar"
+                        "api"  : "writeLogToWeblog",
+                        "user" : this.empId,
+                        "type" : "topPatientCalendar"
                     }
                     fetch(
                         'https://ehis.kfsyscc.org/service', 
                         { 
                             credentials:'include',
-                            body: JSON.stringify(logData),
+                            body:   JSON.stringify(logData),
                             method: 'POST'
                         }
                     )
@@ -121,7 +121,6 @@ class Person {
         .catch( ()=>{
             this.setObs('msg', '抓取資料錯誤\n請確認有此病人，確定有後聯絡資訊部')
         } )
-
     }
 }
 

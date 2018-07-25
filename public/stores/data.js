@@ -72,7 +72,8 @@ class DataStore {
                         }, 
                         queryItem
                     )
-                )
+                ),
+                credentials: 'include'
             }
         )
         .then( d => d.json() )

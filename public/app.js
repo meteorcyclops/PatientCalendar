@@ -30,8 +30,6 @@ class RenderForcer extends React.Component {
         let chartno = null
         let patid = null
 
-        console.log(dataStore.chartno)
-
         if (person.ready){
             docno   = dataStore.docno
             chartno = dataStore.chartno

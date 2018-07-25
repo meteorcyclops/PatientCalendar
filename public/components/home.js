@@ -25,7 +25,10 @@ class Home extends React.Component {
         super(props);
         this.state = {  }
         
-        personData.getUser()
+        if (PRODUCTION_TYPE !=='pp' ){
+            personData.getUser()
+        }
+
         this.chartno = this.props.chartno
         this.docno   = this.props.docno
         this.patid   = this.props.patid

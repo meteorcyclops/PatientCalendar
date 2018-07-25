@@ -25,7 +25,7 @@ class Home extends React.Component {
         super(props);
         this.state = {  }
         
-        if (PRODUCTION_TYPE !=='pp' ){
+        if ( PRODUCTION_TYPE !== 'pp' ){
             personData.getUser()
         }
 

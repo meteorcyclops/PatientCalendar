@@ -54,7 +54,7 @@ class DataStore {
         this.getReservationsLoading = true
 
         const url = PRODUCTION_TYPE ==='pp'? 
-                      'https://patient.kfsyscc.org/secure_api_secret' 
+                      'https://patient.kfsyscc.org/secure_api_secret/CalendarData' 
                     : 'https://ehis-uat.kfsyscc.org/service'
 
 

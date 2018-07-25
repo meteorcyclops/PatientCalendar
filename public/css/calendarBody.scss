@@ -21,7 +21,8 @@ $fontColor: rgb(25, 40, 49);
     border-radius: 10px;
     z-index: 1;
     margin: 0px 25px;
-    width: auto;
+    width: auto!important;
+    overflow: hidden;
 }
 
 .rbc-today {

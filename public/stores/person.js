@@ -104,7 +104,7 @@ class Person {
         headers.append("Content-Type", "application/json")
         headers.append("Accept", "application/json")
         
-      const uri = PRODUCTION_TYPE === 'pp' ? '/secure_api_secret/CalendarUserInfo' : `https://ehis.kfsyscc.org/ord-graph`
+        const uri = PRODUCTION_TYPE === 'pp' ? '/secure_api_secret/CalendarUserInfo' : `https://ehis.kfsyscc.org/ord-graph`
         
         fetch(uri, {
             method: 'POST',

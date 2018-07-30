@@ -22,6 +22,14 @@ class RenderForcer extends React.Component {
             person.getPerson('chartno', otherEntryChartno)
         } 
         // ---
+        if (PRODUCTION_TYPE === 'pp'){
+          fetch('/secure_api_web/UserInfo', { credentials: 'include' })
+            .then(d => d.json())
+            .then(d => {
+              dataStore.changeEntry('chartno', d.user.ChartNo)
+              person.getPerson('chartno', d.user.ChartNo)
+            })
+        }
     }
 
     render() {

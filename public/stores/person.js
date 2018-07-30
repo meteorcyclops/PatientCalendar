@@ -11,7 +11,7 @@ class Person {
 
     @observable id= ''
     @observable name= '???'
-    @observable ready= false
+    @observable ready= true
     @observable msg= ''
     @observable empId= ''
     @observable empName= ''

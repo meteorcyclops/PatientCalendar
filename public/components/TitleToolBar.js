@@ -107,19 +107,19 @@ class TitleToolBar extends React.Component {
                         style={{color: view=='month'?'#4079ff':null}}
                         onClick={this.view.bind(null, 'month')}
                     >
-                        M
+                        月
                     </ViewDivStamp>
                     <ViewDivStamp
                         style={{color: view=='day'?'#4079ff':null}}
                         onClick={this.view.bind(null, 'day')}
                     >
-                        D
+                        日
                     </ViewDivStamp>
                     <ViewDivStamp
                         style={{color: view=='agenda'?'#4079ff':null}}
                         onClick={this.view.bind(null, 'agenda')}
                     >
-                        A
+                        全
                     </ViewDivStamp>
                 </ViewDivGroup>
                 <ModeControl 
@@ -174,11 +174,11 @@ class TitleToolBar extends React.Component {
             `,
             viewDivGroup:styled.div`
                 position: absolute;
-                right: 0px; top: 0px;
+                right: 0px; top: 4px;
                 display: flex; flex-direction: row;
                 align-items: center;
                 margin-right:10px;
-                font-size: 20px;
+                font-size: 14px;
                 font-family: monospace;
                 font-weight: bold;
                 color: rgba(255, 255, 255, 0.6);

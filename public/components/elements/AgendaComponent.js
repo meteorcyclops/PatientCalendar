@@ -26,7 +26,7 @@ class AgendaComponent extends React.Component {
         const eventData = _.map( data, ( eachData, idx )=>{
 
             const startDay  = moment( eachData.start ).format('YYYY/MM/DD')
-            const startTime = eachData.allDay? '' : moment( eachData.start ).format('HH:mm')
+            const startTime = eachData.allDay? '     ' : moment( eachData.start ).format('HH:mm')
             
             const eventData = eachData.data
 
@@ -34,13 +34,13 @@ class AgendaComponent extends React.Component {
 
             switch(eventData.title){
                 case '預約門診': 
-                    body = `${startDay} ${startTime} ${eventData.title} ${eventData.HDEPT_CODE} ${eventData.DOC_NAME} ${ eventData.MEMO? '-' + eventData.MEMO: '' }`
+                    body = `${startDay} ${startTime} 門診 ${eventData.HDEPT_CODE} ${eventData.DOC_NAME} ${ eventData.MEMO? '-' + eventData.MEMO: '' }`
                     break
                 case '預約住院': 
-                    body = `${startDay} ${startTime} ${eventData.title}`
+                    body = `${startDay} ${startTime} 住院`
                     break
                 case '預約手術': 
-                    body = `${startDay} ${startTime} ${eventData.beforeOprs.length>0?eventData.beforeOprs[0]:''}`
+                    body = `${startDay} ${startTime} 手術 ${eventData.beforeOprs.length > 0 ? eventData.beforeOprs[0] : ''}`
                     break
                 case '預約排檢': 
                     body = `${startDay} ${startTime} ${eventData.EXAMCNAME}`
@@ -49,10 +49,10 @@ class AgendaComponent extends React.Component {
                     body = `${startDay} ${startTime} ${eventData.ITM_NAME}`
                     break
                 case '預約健檢': 
-                    body = `${startDay} ${startTime} ${eventData.title}`
+                    body = `${startDay} ${startTime} 健檢`
                     break
                 case '預約放腫': 
-                    body = `${startDay} ${startTime} ${eventData.ActivityNote}, ${eventData.ShortComment}`
+                    body = `${startDay} ${startTime} 放腫 ${eventData.ActivityNote}, ${eventData.ShortComment}`
                     break
             }
 

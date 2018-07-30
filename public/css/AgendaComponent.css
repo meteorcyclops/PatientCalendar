@@ -13,4 +13,5 @@
     font-size: 15px;
     margin: 5px 0px;
     cursor: pointer;
+    white-space: pre-wrap;
 }

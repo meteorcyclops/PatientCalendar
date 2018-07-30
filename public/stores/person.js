@@ -104,12 +104,13 @@ class Person {
         headers.append("Content-Type", "application/json")
         headers.append("Accept", "application/json")
         
-        const uri = `https://ehis.kfsyscc.org/ord-graph`
+      const uri = PRODUCTION_TYPE === 'pp' ? '/secure_api_secret/CalendarUserInfo' : `https://ehis.kfsyscc.org/ord-graph`
         
         fetch(uri, {
             method: 'POST',
             headers: headers,
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            credentials: 'include'
         })
         .then((response) => { return response.json() })
         .then( (backdata)=>{

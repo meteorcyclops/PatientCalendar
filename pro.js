@@ -73,21 +73,21 @@ module.exports = env =>( {
         ]
     },
     optimization: {
-        splitChunks: {
-            chunks: "async",
-            minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
-            name: true,
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "vendors",
-                    chunks: "all"
-                }
-            }
-        }
+        // splitChunks: {
+        //     chunks: "async",
+        //     minChunks: 1,
+        //     maxAsyncRequests: 5,
+        //     maxInitialRequests: 3,
+        //     automaticNameDelimiter: '~',
+        //     name: true,
+        //     cacheGroups: {
+        //         commons: {
+        //             test: /[\\/]node_modules[\\/]/,
+        //             name: "vendors",
+        //             chunks: "all"
+        //         }
+        //     }
+        // }
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -95,7 +95,7 @@ module.exports = env =>( {
         }),
         new MiniCssExtractPlugin({
             filename: "styles.css",
-            chunkFilename: "chunks.css"
+            // chunkFilename: "chunks.css"
         }),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/,

@@ -55,7 +55,7 @@ class DataStore {
 
         const url = PRODUCTION_TYPE ==='pp'? 
                       'https://patient.kfsyscc.org/secure_api_secret/CalendarData' 
-                    : 'https://ehis-uat.kfsyscc.org/service'
+                    : 'https://ehis.kfsyscc.org/service'
 
 
         fetch( 

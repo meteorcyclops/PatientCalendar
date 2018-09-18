@@ -29,6 +29,10 @@ class TitleToolBar extends React.Component {
         library.add(faCalendarCheck)
     }
 
+    componentDidMount(){
+
+    }
+
     handleClick() {
         console.log(this)
     }
@@ -62,6 +66,7 @@ class TitleToolBar extends React.Component {
     }
 
     render() {
+
         // console.log(this.props)
         const date = moment( this.props.date )
         const label = date.format( 'YYYY MMMM' )

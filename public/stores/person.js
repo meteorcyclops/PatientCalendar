@@ -28,10 +28,19 @@ class Person {
             .then( (x)=>x.json() )
             .then( action(
                 (data)=>{
-                    this.empId = data.user.USER_ID 
-                    this.empAccount = data.user.AD_ACCOUNT
-                    this.empName = data.user.NAME_CH
-                    if ( data.user.ROLE.top === 'user' ){
+
+                    if ( _.get(data, ['user', 'USER_ID'] ) ){
+                        this.empId = data.user.USER_ID 
+                        this.empAccount = data.user.AD_ACCOUNT
+                        this.empName = data.user.NAME_CH
+                        if ( data.user.ROLE.top === 'user' ){
+                            this.chartnoCanChange = true
+                        }
+
+                    } else {
+                        this.empId = 'nis' 
+                        this.empAccount = 'nis'
+                        this.empName = '未登入'
                         this.chartnoCanChange = true
                     }
 

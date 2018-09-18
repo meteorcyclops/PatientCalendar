@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import queryString from 'query-string'
 import { observer } from 'mobx-react'
 import Cookies from 'js-cookie'
+import qs from 'query-string'
 
 import Home from './components/home'
 import dataStore from './stores/data'
@@ -12,6 +13,23 @@ class RenderForcer extends React.Component {
 
     componentDidMount(){
         // 讀取是否有從別的入口來的資訊
+
+        if ( window.location.search.length>0 ){
+            const params = qs.parse(window.location.search)
+            console.log(params)
+            if (params.chartno){
+                const chartnoQ = params.chartno
+                dataStore.changeEntry('chartno', chartnoQ)
+                person.getPerson('chartno', chartnoQ)
+                if(params.page){
+                    if( ['agenda', 'month', 'day'].indexOf(params.page) >= 0 ){
+                        dataStore.setObs( 'nowView', params.page )
+                    }
+                }
+                
+            }
+        }
+
         let otherEntryChartno = Cookies.get(`chartnoForPatientCalendar`) || ''
         Cookies.remove(`chartnoForPatientCalendar`)
 

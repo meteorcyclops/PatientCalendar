@@ -34,7 +34,7 @@ class AgendaComponent extends React.Component {
 
             switch(eventData.title){
                 case '預約門診': 
-                    body = `${startDay} ${startTime} 門診 ${eventData.HDEPT_CODE} ${eventData.DOC_NAME} ${ eventData.MEMO? '-' + eventData.MEMO: '' }`
+                    body = `${startDay} ${startTime} 門診 ${eventData.HDEPT_CODE} ${eventData.DOC_NAME} ${ eventData.MEMO? '-' + eventData.MEMO : '' }`
                     break
                 case '預約住院': 
                     body = `${startDay} ${startTime} 住院`

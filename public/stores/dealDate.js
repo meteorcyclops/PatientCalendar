@@ -43,14 +43,18 @@ const makeEventList = (dataList) =>{
         event.data = eachData
 
         if ( eachData.title == '預約門診' ){
-            
             event.title = '門診'
             event.type = 'opd'
             conterObj.opd += 1
-            //門診治療室戳記
+            // 門診治療室戳記
             if (eachData.optr){
                 event.optr = true
                 // event.titleTail = '( 門診治療室 )'
+            }
+
+            // PP 
+            if ( PRODUCTION_TYPE === 'pp' ){
+                event.data.MEMO = ''
             }
      
         } else if (eachData.title == '預約健檢'){

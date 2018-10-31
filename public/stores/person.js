@@ -3,7 +3,7 @@ import mobx from 'mobx'
 import _ from 'lodash' 
 import moment from 'moment'
 
-import { makeEventList } from './dealDate'
+import { makeEventList } from './dealData'
 import TDialog from '../components/elements/TDialog';
 import dataStore from './data'
 

@@ -3,7 +3,7 @@ import mobx from 'mobx'
 import _ from 'lodash' 
 import moment from 'moment'
 
-import { makeEventList } from './dealDate'
+import { makeEventList } from './dealData'
 
 class DataStore {
 

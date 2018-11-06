@@ -34,6 +34,8 @@ class DataStore {
 此模式下按右箭頭會跳至下一個事件，左箭頭反之。`
     }
 
+    reconnect = 0
+
     @action
     setObs( key, value ){
         this[key] = value
@@ -57,8 +59,9 @@ class DataStore {
                       'https://patient.kfsyscc.org/secure_api_secret/CalendarData' 
                     : 'https://ehis.kfsyscc.org/service'
 
+        
 
-        fetch( 
+        const get = () => fetch( 
             url, //'https://ehis.kfsyscc.org/service'
             {
                 method: 'POST',
@@ -90,7 +93,19 @@ class DataStore {
                 this.reservationCounter = pocessingData.counter
             }
             this.getReservationsLoading = false
+            this.reconnect = 0
         } )
+        .catch( ()=>{
+            console.log('e')
+            if (this.reconnect === 0 ){
+                this.reconnect += 1
+                get()
+            }else{
+                alert('讀取資料錯誤！') 
+            }
+        } )
+
+        get()
 
     }
 }

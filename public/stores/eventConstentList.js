@@ -1,13 +1,14 @@
 const eventConstentList = {
     '預約門診':[
         { label: '姓名', column: 'patName' },
-        { label: '預訂時間', column: 'date' },
+        { label: '報到時間', column: 'NOTE' },
         { label: '門診醫師', column: 'DOC_NAME' },
         { label: '診區', column: 'AREA_NAME' },
         // { label: '上次診斷', column: 'diagnosis' },
-        { label: '預約', column: 'NOTE' },
+        // { label: '預約', column: 'NOTE' },
+    ].concat( PRODUCTION_TYPE !== 'pp'? [] : [
         { label: '備註', column: 'MEMO' }
-    ],
+    ]),
     '預約住院':[
         { label: '姓名', column: 'patName' },
         { label: '入住時間', column: 'date' },

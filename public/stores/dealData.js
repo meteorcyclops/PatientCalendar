@@ -51,11 +51,6 @@ const makeEventList = (dataList) =>{
                 event.optr = true
                 // event.titleTail = '( 門診治療室 )'
             }
-
-            // PP 
-            if ( PRODUCTION_TYPE === 'pp' ){
-                event.data.MEMO = ''
-            }
      
         } else if (eachData.title == '預約健檢'){
      

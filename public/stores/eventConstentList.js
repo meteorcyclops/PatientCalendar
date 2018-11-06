@@ -6,7 +6,7 @@ const eventConstentList = {
         { label: '診區', column: 'AREA_NAME' },
         // { label: '上次診斷', column: 'diagnosis' },
         // { label: '預約', column: 'NOTE' },
-    ].concat( PRODUCTION_TYPE !== 'pp'? [] : [
+    ].concat( PRODUCTION_TYPE === 'pp'? [] : [
         { label: '備註', column: 'MEMO' }
     ]),
     '預約住院':[

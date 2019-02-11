@@ -41,6 +41,9 @@ const makeEventList = (dataList) =>{
 
 
         event.data = eachData
+        if( PRODUCTION_TYPE === 'pp'){
+            event.data.MEMO = ''
+        }
 
         if ( eachData.title == '預約門診' ){
             event.title = '門診'
@@ -86,6 +89,8 @@ const makeEventList = (dataList) =>{
 
         return event
     } )
+
+    console.log(eventList)
 
     return {
         counter: conterObj,

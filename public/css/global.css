@@ -28,7 +28,8 @@ span {
     display: flex;
     flex-direction: column;
     align-content: stretch;
-    background: rgb(125, 185, 222) 125px;
+    background: rgba(40,57,101,.9);
+    /* background: rgb(125, 185, 222) 125px; */
     /* repeating-linear-gradient( 10deg, rgba(125, 185, 222, 0.75), rgba(125, 185, 222, 0.75) 125px, rgb(125, 185, 222) 125px, rgb(125, 185, 222) 250px ); */
 }
 
@@ -42,7 +43,8 @@ span {
     color: #ffffff;
     font-size: 20px;
     padding: 8px 0px;
-    background: rgba(0, 91, 147, 0.7);
+    /* background: rgba(0, 91, 147, 0.7); */
+    background: rgba(7, 41, 63, 0.7);
     width: 85%;
     cursor: pointer;
 }
@@ -57,16 +59,16 @@ span {
 
 .homeTitle:before {
     top: 0px;
-    background: linear-gradient(to top right, rgba(0, 91, 147, 0.7) 50%, transparent 51%);
+    background: linear-gradient(to top right, rgba(7, 41, 63, 0.7) 50%, transparent 51%);
 }
 .homeTitle:after {
     bottom: 0px;
-    background: linear-gradient(to bottom right, rgba(0, 91, 147, 0.7) 50%, transparent 51%);
+    background: linear-gradient(to bottom right, rgba(7, 41, 63, 0.7) 50%, transparent 51%);
 }
 
 .homeActionPlane{
     flex-grow: 1;
-    margin-top: 46px;
+    margin-top: 48px;
 }
 
 .divButton{
@@ -81,7 +83,7 @@ span {
 }
 
 .events_overview{
-    background: #fffef340;
+    background: #f6f9ffad;
     padding: 5px;
     display: flex;
     flex-flow: row wrap;

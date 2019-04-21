@@ -145,6 +145,8 @@ class CalendarHome extends React.Component {
                 }}
                 onView = {()=>{}}
                 formats={this.formats}
+
+                getNow = { ()=>new Date(2019,3,20) }
                 // selectable={true}
                 // popup={true}
             />

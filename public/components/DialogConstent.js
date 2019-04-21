@@ -86,7 +86,8 @@ class DialogConstent extends React.Component {
                 >
                     <div
                         style={{
-                            width:'85px'
+                            width:'85px',
+                            minWidth: '85px'
                         }}
                     >
                         {item.label}:

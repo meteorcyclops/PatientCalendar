@@ -17,7 +17,8 @@ $fontColor: rgb(25, 40, 49);
     font-family: monospace,syscc,微軟正黑體!important;
 }
 .rbc-month-view{
-    background: #fefefeb3;
+    background: rgba(255, 255, 255, 0.73);
+    // background: #fefefeb3;
     border-radius: 10px;
     z-index: 1;
 }
@@ -33,7 +34,8 @@ $fontColor: rgb(25, 40, 49);
 
 .rbc-today {
     // border: 2px solid #7ab4d8!important;
-    background: #aadbff;
+    background: #d5efff9e;
+    // background: #aadbff;
 }
 .rbc-current>div>div{
     position: absolute;
@@ -102,4 +104,19 @@ $fontColor: rgb(25, 40, 49);
 
 .rbc-day-slot .rbc-event{
     position: relative;
+}
+
+.rbc-event-content {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.rbc-event-content>div{
+    width: 100%;
+}
+.rbc-event-content span{
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

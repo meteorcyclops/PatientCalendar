@@ -6,6 +6,11 @@
     padding: 10px;
     border: 2px #2575a8 solid;
     z-index: 2;
+    overflow-y: auto;
+}
+
+.AgendaComponentEvent:nth-child(odd){
+    background: #ffffff8c;
 }
 
 .AgendaComponentEvent{
@@ -14,4 +19,5 @@
     margin: 5px 0px;
     cursor: pointer;
     white-space: pre-wrap;
+    padding: 5px;
 }

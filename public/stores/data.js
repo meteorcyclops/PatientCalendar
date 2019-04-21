@@ -3,6 +3,8 @@ import mobx from 'mobx'
 import _ from 'lodash' 
 import moment from 'moment'
 
+import { reserveList } from './demoData'
+
 import { makeEventList } from './dealData'
 
 class DataStore {
@@ -17,7 +19,8 @@ class DataStore {
     @observable getReservationsLoading = false
 
     @observable userType = 'patient' // patient, doctor
-    @observable nowDate  = moment().toDate()
+    @observable nowDate  = moment('20190420', 'YYYYMMDD').toDate()
+    // @observable nowDate  = moment().toDate()
     @observable nowView  = 'month' // month, agenda
 
     @observable pickEvent = null
@@ -55,57 +58,71 @@ class DataStore {
         
         this.getReservationsLoading = true
 
-        const url = PRODUCTION_TYPE ==='pp'? 
-                      'https://patient.kfsyscc.org/secure_api_secret/CalendarData' 
-                    : 'https://ehis.kfsyscc.org/service'
+        const get = () => {
+            const data              = reserveList.data
+            
+            this.reservationData    = data
+            
+            const pocessingData     = makeEventList(data)
+            this.reservationEvents  = pocessingData.data
+            this.reservationCounter = pocessingData.counter
+            this.getReservationsLoading = false
+            this.reconnect          = 0
+        }
+        
+        setTimeout( get, 1000 )
+
+        // const url = PRODUCTION_TYPE ==='pp'? 
+        //               'https://patient.kfsyscc.org/secure_api_secret/CalendarData' 
+        //             : 'https://ehis.kfsyscc.org/service'
 
         
 
-        const get = () => fetch( 
-            url, //'https://ehis.kfsyscc.org/service'
-            {
-                method: 'POST',
-                headers: new Headers({ 
-                    'Content-Type': 'application/json' 
-                }),
-                body: JSON.stringify(
-                    Object.assign(
-                        {
-                            "api": "topListReservation"
-                        }, 
-                        queryItem
-                    )
-                ),
-                credentials: 'include'
-            }
-        )
-        .then( d => d.json() )
-        .then( (backdata)=>{
-            if (!backdata.status){
-                alert( backdata.err )
-            }else {
-                const data = backdata.data
+        // const get = () => fetch( 
+        //     url, //'https://ehis.kfsyscc.org/service'
+        //     {
+        //         method: 'POST',
+        //         headers: new Headers({ 
+        //             'Content-Type': 'application/json' 
+        //         }),
+        //         body: JSON.stringify(
+        //             Object.assign(
+        //                 {
+        //                     "api": "topListReservation"
+        //                 }, 
+        //                 queryItem
+        //             )
+        //         ),
+        //         credentials: 'include'
+        //     }
+        // )
+        // .then( d => d.json() )
+        // .then( (backdata)=>{
+        //     if (!backdata.status){
+        //         alert( backdata.err )
+        //     }else {
+        //         const data = backdata.data
 
-                this.reservationData = data
+        //         this.reservationData = data
 
-                const pocessingData = makeEventList(data)
-                this.reservationEvents  = pocessingData.data
-                this.reservationCounter = pocessingData.counter
-            }
-            this.getReservationsLoading = false
-            this.reconnect = 0
-        } )
-        .catch( ()=>{
-            console.log('e')
-            if (this.reconnect === 0 ){
-                this.reconnect += 1
-                get()
-            }else{
-                alert('讀取資料錯誤！') 
-            }
-        } )
+        //         const pocessingData = makeEventList(data)
+        //         this.reservationEvents  = pocessingData.data
+        //         this.reservationCounter = pocessingData.counter
+        //     }
+        //     this.getReservationsLoading = false
+        //     this.reconnect = 0
+        // } )
+        // .catch( ()=>{
+        //     console.log('e')
+        //     if (this.reconnect === 0 ){
+        //         this.reconnect += 1
+        //         get()
+        //     }else{
+        //         alert('讀取資料錯誤！') 
+        //     }
+        // } )
 
-        get()
+        // get()
 
     }
 }

@@ -16,7 +16,6 @@ class RenderForcer extends React.Component {
 
         if ( window.location.search.length>0 ){
             const params = qs.parse(window.location.search)
-            console.log(params)
             if (params.chartno){
                 const chartnoQ = params.chartno
                 dataStore.changeEntry('chartno', chartnoQ)
@@ -39,15 +38,21 @@ class RenderForcer extends React.Component {
             // 讀病人資料
             person.getPerson('chartno', otherEntryChartno)
         } 
+
+        dataStore.changeEntry('chartno', '05539101')
+        // 讀病人資料
+        person.getPerson('chartno', '05539101')
+
         // ---
-        if (PRODUCTION_TYPE === 'pp'){
-          fetch('/secure_api_web/UserInfo', { credentials: 'include' })
-            .then(d => d.json())
-            .then(d => {
-              dataStore.changeEntry('chartno', d.user.ChartNo)
-              person.getPerson('chartno', d.user.ChartNo)
-            })
-        }
+        // if (PRODUCTION_TYPE === 'pp'){
+        //   fetch('/secure_api_web/UserInfo', { credentials: 'include' })
+        //     .then(d => d.json())
+        //     .then(d => {
+        //       dataStore.changeEntry('chartno', d.user.ChartNo)
+        //       person.getPerson('chartno', d.user.ChartNo)
+        //     })
+        // }
+        // ---
     }
 
     render() {
@@ -72,4 +77,4 @@ class RenderForcer extends React.Component {
     }
 }
 
-export default observer(RenderForcer)
+export default observer( RenderForcer )

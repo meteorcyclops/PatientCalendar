@@ -44,9 +44,11 @@ class Home extends React.Component {
         if (props.patid)   { queryItem.PAT_IDNO = props.patid; hasQuery = true }
         if (props.docno)   { queryItem.DOC_NO   = props.docno; hasQuery = true }
 
-        if (hasQuery){
-            dataStore.getReservations( queryItem )
-        }
+        dataStore.getReservations( queryItem )
+
+        // if (hasQuery){
+        //     dataStore.getReservations( queryItem )
+        // }
     }
 
     render() {
@@ -66,7 +68,7 @@ class Home extends React.Component {
                         }
                     }}
                 >
-                    <CalendarTitle id={personData.id}  name= {personData.name} />
+                    <CalendarTitle id = {personData.id}  name = {personData.name} />
                 </div>
                 <div className='homeActionPlane'>
                     {
@@ -80,9 +82,9 @@ class Home extends React.Component {
                 </div>
                 <div className = 'calendarContainer'>
                     <CalendarHome 
-                        events={ calendarEvents }
-                        date={nowDate}
-                        view={dataStore.nowView}
+                        events = {calendarEvents }
+                        date   = {nowDate}
+                        view   = {dataStore.nowView}
                     />
                 </div>
                 <Dialog 
@@ -90,7 +92,8 @@ class Home extends React.Component {
                     bodyCompStyle={{
                         height:'75%',
                         backgroundImage: `url("${BkImg}")`,
-                        backgroundColor: 'rgba(85, 162, 208, 1)',
+                        backgroundColor: 'rgb(76, 94, 141)',
+                        // backgroundColor: 'rgba(85, 162, 208, 1)',
                         border: '2px solid #e0e4ff',
                         maxWidth:'400px', 
                     }}

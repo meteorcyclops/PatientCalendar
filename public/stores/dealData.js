@@ -90,8 +90,6 @@ const makeEventList = (dataList) =>{
         return event
     } )
 
-    console.log(eventList)
-
     return {
         counter: conterObj,
         data: eventList

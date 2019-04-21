@@ -107,7 +107,7 @@ class Home extends React.Component {
                     bodyCompStyle={{
                         height:'40%',
                         backgroundImage: `url("${BkImg}")`,
-                        backgroundColor: 'rgba(85, 162, 208, 1)',
+                        backgroundColor: 'rgb(64, 78, 115)',
                         border: '2px solid #e0e4ff', 
                         maxWidth:'400px', 
                         maxHeight:'300px' 
